@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RellativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp">
+
+    <ImageView android:id="@+id/exit_id"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:src="@mipmap/exit_gray" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/toobar_title"
+        android:textColor="@color/color_black"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <ImageView android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:src="@mipmap/erweima" />
+
+</RellativeLayout>
