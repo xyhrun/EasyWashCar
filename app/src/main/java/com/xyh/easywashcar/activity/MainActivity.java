@@ -31,11 +31,11 @@ public class MainActivity extends FragmentActivity {
     RadioGroup radioGroup;
     @Bind(R.id.market_id)
     RadioButton market;
-    @Bind(R.id.me_id)
+    @Bind(R.id.resource_id)
     RadioButton my_order;
     @Bind(R.id.home_id)
     RadioButton home;
-    @Bind(R.id.contact_id)
+    @Bind(R.id.mine_id)
     RadioButton contact;
 
     private MyPagerAdapter myPagerAdapter;
@@ -71,10 +71,10 @@ public class MainActivity extends FragmentActivity {
                 case R.id.market_id:
                     viewPager.setCurrentItem(1);
                     break;
-                case R.id.me_id:
+                case R.id.resource_id:
                     viewPager.setCurrentItem(2);
                     break;
-                case R.id.contact_id:
+                case R.id.mine_id:
                     viewPager.setCurrentItem(3);
                     break;
             }
@@ -97,10 +97,10 @@ public class MainActivity extends FragmentActivity {
                     radioGroup.check(R.id.market_id);
                     break;
                 case 2:
-                    radioGroup.check(R.id.me_id);
+                    radioGroup.check(R.id.resource_id);
                     break;
                 case 3:
-                    radioGroup.check(R.id.contact_id);
+                    radioGroup.check(R.id.mine_id);
                     break;
             }
         }
@@ -119,8 +119,8 @@ public class MainActivity extends FragmentActivity {
         MessageFragment messageFragment = new MessageFragment();
         fragments.add(homePageFragment);
         fragments.add(marketFragment);
-        fragments.add(mineFragment);
         fragments.add(messageFragment);
+        fragments.add(mineFragment);
         myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         //有值
         Log.d(TAG, "------initViewPagerData: " + myPagerAdapter);

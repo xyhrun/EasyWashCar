@@ -55,7 +55,7 @@
 
 
         <RadioButton
-            android:id="@+id/me_id"
+            android:id="@+id/resource_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -67,7 +67,7 @@
             android:textColor="@drawable/selector_text_color" />
 
         <RadioButton
-            android:id="@+id/contact_id"
+            android:id="@+id/mine_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
