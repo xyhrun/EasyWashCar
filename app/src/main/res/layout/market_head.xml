@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_white">
+
+    <TextView android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:text="周边服务店"
+        android:textSize="20sp"
+        android:textColor="@color/color_black"
+        android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Spinner android:id="@+id/market_city_name_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/city"></Spinner>
+
+            <Spinner android:id="@+id/market_service_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/service"></Spinner>
+
+            <Spinner android:id="@+id/market_priority_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/priority"></Spinner>
+        </LinearLayout>
+</LinearLayout>

@@ -2,4 +2,36 @@
     <string name="app_name">爱易洗车</string>
 
     <string name="toobar_title">爱易洗车</string>
+
+    <string-array name="city">
+        <item>武汉市</item>
+        <item>江岸区</item>
+        <item>汉南区</item>
+        <item>蔡甸区</item>
+        <item>江夏区</item>
+        <item>黄坡区</item>
+        <item>新洲区</item>
+        <item>东西湖区</item>
+        <item>洪山区</item>
+        <item>青山区</item>
+        <item>汉阳区</item>
+        <item>武昌区</item>
+        <item>硚口区</item>
+        <item>江汉区</item>
+        <item>其他区</item>
+    </string-array>
+
+    <string-array name="service">
+        <item >服务</item>
+        <item>普通洗车-5座</item>
+        <item>普通洗车-7座</item>
+        <item>精细洗车-5座</item>
+        <item>精细洗车-7座</item>
+    </string-array>
+
+    <string-array name="priority">
+        <item>优先级</item>
+        <item>距离从近到远</item>
+        <item>评分从高到低</item>
+    </string-array>
 </resources>

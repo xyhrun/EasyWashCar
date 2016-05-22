@@ -52,7 +52,7 @@ public class HomePageFragment extends Fragment {
     //设置ViewPager信息
     private ArrayList<ImageView> imageviews;
     private ViewPagerAdapter viewPagerAdapter;
-    private int[] imgs = {R.mipmap.img01,R.mipmap.img02,R.mipmap.img03,R.mipmap.img04};
+    private int[] imgs = {R.mipmap.wash_car01,R.mipmap.wash_car02,R.mipmap.wash_car03,R.mipmap.wash_car04};
     private int pointIndex;
     private boolean isPlaying = true;
     private ViewPagerListener viewPagerListener;

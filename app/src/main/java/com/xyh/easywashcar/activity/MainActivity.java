@@ -114,7 +114,7 @@ public class MainActivity extends FragmentActivity {
     public void initViewPagerData() {
         Log.d(TAG, "--------initViewPagerData: 你他妈执行了吗");
         HomePageFragment homePageFragment = new HomePageFragment(MainActivity.this);
-        MarketFragment marketFragment = new MarketFragment();
+        MarketFragment marketFragment = new MarketFragment(MainActivity.this);
         MineFragment mineFragment = new MineFragment();
         MessageFragment messageFragment = new MessageFragment();
         fragments.add(homePageFragment);
