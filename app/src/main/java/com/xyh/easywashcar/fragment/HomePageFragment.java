@@ -2,7 +2,9 @@ package com.xyh.easywashcar.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -56,6 +58,7 @@ public class HomePageFragment extends Fragment {
     private int pointIndex;
     private boolean isPlaying = true;
     private ViewPagerListener viewPagerListener;
+    private ViewPagerTask viewPagerTask;
 
     @Nullable
     @Override
@@ -71,10 +74,29 @@ public class HomePageFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewPagerTask = new ViewPagerTask();
+        viewPagerTask.execute();
+//        使用handler失败,界面无响应,卡死
+//       new Handler().post(new Runnable() {
+//            @Override
+//            public void run() {
+//                while (isPlaying) {
+//                    SystemClock.sleep(2000);
+//
+//                    getActivity().runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            viewpager_inner.setCurrentItem(viewpager_inner.getCurrentItem() + 1);
+//                        }
+//                    });
+//                }
+//            }
+//        });
     }
 
     private void setGridViewOnClickListener() {
@@ -87,6 +109,7 @@ public class HomePageFragment extends Fragment {
     }
 
     private void initGridViewData() {
+        //不添加判断的话,切换到第三个fragment时候,数据会再增加一倍.
         if (gridItems.size() == 0) {
             Log.d(TAG, "!!-----initGridViewData: 执行了"+ i);
             gridItems.add(new GridItem("上门洗车", R.mipmap.car_1));
@@ -123,24 +146,6 @@ public class HomePageFragment extends Fragment {
         viewpager_inner.setAdapter(viewPagerAdapter);
     }
 
-//    private void autoViewGager() {
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                while (isPlaying) {
-//                    SystemClock.sleep(2000);
-//
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
-//                        }
-//                    });
-//                }
-//            }
-//        }).start();
-//    }
-
     private void initAction() {
         viewPagerListener = new ViewPagerListener();
         viewpager_inner.setOnPageChangeListener(viewPagerListener);
@@ -172,4 +177,34 @@ public class HomePageFragment extends Fragment {
         }
     }
 
+    class ViewPagerTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+                while (isPlaying) {
+                    //两秒切换一次图片
+                    SystemClock.sleep(2000);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            viewpager_inner.setCurrentItem(viewpager_inner.getCurrentItem()+1);
+                        }
+                    });
+                }
+            return null;
+        }
+    }
+
+    //销毁活动时候异步任务取消
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "------HomePageFragment onDestroy: ");
+        viewPagerTask.cancel(true);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i(TAG, "------ HomePageFragment onStop: ");
+    }
 }

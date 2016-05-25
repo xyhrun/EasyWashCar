@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xyh.easywashcar">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name=".base.MyAppcation"
         android:allowBackup="true"
@@ -10,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.NoTitleBar">
 
-        <activity android:name=".activity.MainActivity"
+        <activity android:name=".activity.SplashActivity"
             android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +22,7 @@
 
         <activity android:name=".activity.Gridview_1" />
         <activity android:name=".activity.Coupon" />
+        <activity android:name=".activity.MainActivity" />
     </application>
 
 </manifest>

@@ -1,7 +1,6 @@
 package com.xyh.easywashcar.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +28,14 @@ public class MarketAdapter extends BaseAdapter {
     private MarketItemViewHolder marketItemViewHolder;
     private ArrayList<MarketItem> marketItems;
     private LayoutInflater layoutInflater;
+
+
+    public void onDateChange(ArrayList<MarketItem> marketItems) {
+        this.marketItems = marketItems;
+        this.notifyDataSetChanged();
+    }
+
+
     public MarketAdapter(ArrayList<MarketItem> marketItems, Context context) {
         this.marketItems = marketItems;
         layoutInflater = LayoutInflater.from(context);
@@ -37,7 +44,7 @@ public class MarketAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        Log.d(TAG, "------getCount: "+marketItems.size());
+//        Log.d(TAG, "------getCount: "+marketItems.size());
         return marketItems.size();
     }
 
@@ -53,7 +60,7 @@ public class MarketAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        Log.d(TAG, "!!!!!--------getView:执行了吗 ");
+//        Log.d(TAG, "!!!!!--------getView:执行了吗 ");
         marketItemViewHolder = null;
         if (convertView == null) {
             marketItemViewHolder = new MarketItemViewHolder();
@@ -83,6 +90,8 @@ public class MarketAdapter extends BaseAdapter {
         marketItemViewHolder.type.setText(marketItem.getType());
         marketItemViewHolder.price.setText(marketItem.getPrice());
         marketItemViewHolder.ratingBar.setRating((Float.valueOf(marketItem.getMark())));
+
+        //店铺买单点击事件
         marketItemViewHolder.pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +99,7 @@ public class MarketAdapter extends BaseAdapter {
             }
         });
 
+        //店铺详情点击事件
         marketItemViewHolder.detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,23 +108,23 @@ public class MarketAdapter extends BaseAdapter {
         });
 
 
-        Log.d(TAG, "!-----getView:convertView "+convertView);
+//        Log.d(TAG, "!-----getView:convertView "+convertView);
         return convertView;
     }
 
 
     public class MarketItemViewHolder {
-        private LinearLayout detail;
-        private TextView shop_name;
-        private ImageView shop_img;
-        private TextView shop_address;
-        private TextView  mark;
-        private TextView  comment;
-        private TextView  distance;
-        private TextView  type;
-        private TextView  price;
-        private RatingBar ratingBar;
-        private Button pay;
+        private LinearLayout detail;          //汽车店铺详情
+        private TextView shop_name;           //店铺名字
+        private ImageView shop_img;           //店铺图片
+        private TextView shop_address;        //店铺地址
+        private TextView  mark;               //对店铺评分,以数字显示
+        private RatingBar ratingBar;          //对店铺评分,以星级显示
+        private TextView  comment;            //对店铺的评论条数
+        private TextView  distance;           //店铺距离目前的距离
+        private TextView  type;               //洗车的类型
+        private TextView  price;              //洗车价格
+        private Button pay;                   //买单按钮
     }
 
 

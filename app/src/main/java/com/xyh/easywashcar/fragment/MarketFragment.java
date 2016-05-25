@@ -2,16 +2,18 @@ package com.xyh.easywashcar.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
+import com.orhanobut.logger.Logger;
 import com.xyh.easywashcar.R;
 import com.xyh.easywashcar.adapter.MarketAdapter;
+import com.xyh.easywashcar.base.RefreshListView;
 import com.xyh.easywashcar.model.MarketItem;
 
 import java.util.ArrayList;
@@ -22,14 +24,17 @@ import butterknife.ButterKnife;
 /**
  * Created by 向阳湖 on 2016/5/20.
  */
-public class MarketFragment extends Fragment {
+public class MarketFragment extends Fragment implements RefreshListView.IRefreshListener {
     @Bind(R.id.market_listView_id)
-    ListView market_listView;
+    RefreshListView market_listView;
+//    @Bind(R.id.market_swipeRefreshLayout_id)
+//    SwipeRefreshLayout marketSwipeRefresh;
 //    @Bind(R.id.wash_car_pay_id)
 //    Button pay;
 
+    //    private boolean isRefresh = false;
     private static final String TAG = "MarketFragment";
-    private ArrayList<MarketItem> marketItems = new ArrayList<>();
+    private ArrayList<MarketItem> marketItems;
     private MarketAdapter marketAdapter;
     private Context context;
 
@@ -43,30 +48,34 @@ public class MarketFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_market, container, false);
         ButterKnife.bind(this, view);
         initData();
+        market_listView.setInterface(this);
         marketAdapter = new MarketAdapter(marketItems, context);
         market_listView.setAdapter(marketAdapter);
-        Log.d(TAG, "!!-----onCreateView: market_listView = " + market_listView);
+//        showList(marketItems);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //不工作
-//        market_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//        marketSwipeRefresh.setColorSchemeResources(android.R.color.holo_blue_bright,
+//                android.R.color.holo_green_light,
+//                android.R.color.holo_orange_light,
+//                android.R.color.holo_red_light);
+//        marketSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 //            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(context, "123", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        pay.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(context, "456", Toast.LENGTH_SHORT).show();
+//            public void onRefresh() {
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        marketSwipeRefresh.setRefreshing(false);
+//                    }
+//                },2000);
 //            }
 //        });
 
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,7 +83,22 @@ public class MarketFragment extends Fragment {
 
     }
 
+    private void showList(ArrayList<MarketItem> marketItems) {
+        if (marketAdapter == null) {
+            Logger.d("-----if marketAdapter == null");
+            market_listView.setInterface(this);
+            marketAdapter = new MarketAdapter(marketItems, context);
+            market_listView.setAdapter(marketAdapter);
+        }
+        else {
+            Logger.d("------else onDataChange");
+            marketAdapter.onDateChange(marketItems);
+        }
+    }
+
     private void initData() {
+        marketItems = new ArrayList<>();
+        //不添加判断的话,再次滑到market页面,数据会再增加.导致几倍的数据
         if (marketItems.size() == 0) {
             MarketItem marketItem1 = new MarketItem("车爵士汽车服务(保利心语店)", R.mipmap.car_service_shop01, "洪山区马湖村8号保利心语七期",
                     "5.0", "57条评论", "1.10km", "普通洗车-5座轿车", "￥18");
@@ -106,9 +130,42 @@ public class MarketFragment extends Fragment {
 
     }
 
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        marketItems.clear();
-//    }
+    private void setRefreshData() {
+        MarketItem marketItem1 = new MarketItem("刷新数据1", R.mipmap.car_service_shop07, "武昌区南湖花园瑞安街刘胖子旁",
+                "4.0", "11条评论", "2.00km", "普通洗车-5座轿车", "￥22");
+        MarketItem marketItem2 = new MarketItem("刷新数据2", R.mipmap.car_service_shop08, "武昌区平安路11号",
+                "4.3", "33条评论", "2.42km", "普通洗车-5座轿车", "￥20");
+        marketItems.add(0, marketItem2);
+        marketItems.add(0, marketItem1);
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i(TAG, "------ MarketFragment onStop: ");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "------ MarketFragment onDestroy: ");
+    }
+
+    @Override
+    public void onRefresh() {
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //加载刷新数据
+                setRefreshData();
+                //显示界面
+//                showList(marketItems);
+                //通知listview 刷新数据完毕；
+                market_listView.refreshComplete();
+            }
+        }, 2000);
+
+    }
 }

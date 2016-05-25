@@ -37,6 +37,8 @@ public class ViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         container.addView(imageViews.get(position%imageViews.size()));
         View view = imageViews.get(position % imageViews.size());
+
+        //页面点击事件
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -4,14 +4,16 @@ package com.xyh.easywashcar.model;
  * Created by 向阳湖 on 2016/5/22.
  */
 public class MarketItem {
-    private String shop_name;
-    private int shop_img;
-    private String shop_address;
-    private String mark;
-    private String comment;
-    private String distance;
-    private String type;
-    private String price;
+
+
+    private String shop_name;            //店铺名字
+    private int shop_img;                //店铺图片
+    private String shop_address;        //店铺地址
+    private String mark;                //对店铺评分,以数字显示
+    private String comment;             //对店铺评论条数
+    private String distance;            //店铺距离目前的距离
+    private String type;                //洗车的类型
+    private String price;               //洗车价格
 
     public MarketItem(String shop_name, int shop_img, String shop_address, String mark, String comment, String distance, String type, String price) {
         this.shop_name = shop_name;

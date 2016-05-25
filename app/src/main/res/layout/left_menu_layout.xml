@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--左菜单视图 android:layout_gravity="start" 从左拉开-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/left_menu_id"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="@color/blue_dark">
+
+
+
+        <include android:id="@+id/left_menu_head_id"
+            layout="@layout/left_menu_head" />
+
+    <!--分割线-->
+        <View android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/color_plieon"/>
+
+        <ListView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/left_menu_listView_id"
+            android:divider="@color/color_transplant"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:layout_below="@+id/left_menu_head_id"
+            android:layout_alignTop="@+id/left_menu_setting_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></ListView>
+
+
+        <!--设置选项-->
+        <LinearLayout android:id="@+id/left_menu_setting_id"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/setting_white"/>
+
+            <Button android:layout_marginLeft="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:background="@color/blue_dark"
+                android:text="设置"/>
+        </LinearLayout>
+    </LinearLayout>

@@ -1,7 +1,6 @@
 package com.xyh.easywashcar.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ public class GridViewAdapter extends BaseAdapter {
 
         public GridViewAdapter(List<GridItem> gridItems, Context context) {
             this.gridItems = gridItems;
-            Log.d(TAG, "------构造方法GridViewAdapter: "+context);
+//            Log.d(TAG, "------构造方法GridViewAdapter: "+context);
             inflater = LayoutInflater.from(context);
         }
 
@@ -58,7 +57,7 @@ public class GridViewAdapter extends BaseAdapter {
 //            Log.d(TAG, "----getView: title"+gridItem.getTitle());
             gridViewHolder.title.setText(gridItem.getTitle());
             gridViewHolder.img.setImageResource(gridItem.getImgID());
-            Log.d(TAG, "------getView: convertView"+convertView);
+//            Log.d(TAG, "------getView: convertView"+convertView);
             return convertView;
         }
 
