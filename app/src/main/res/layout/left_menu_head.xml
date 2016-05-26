@@ -15,7 +15,7 @@
 
     <!--登录-->
     <Button
-        android:id="@+id/mine_login_id"
+        android:id="@+id/left_login_id"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:layout_below="@+id/main_headimg_id"

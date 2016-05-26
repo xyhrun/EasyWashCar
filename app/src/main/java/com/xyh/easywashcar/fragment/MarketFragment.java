@@ -50,9 +50,10 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
         View view = inflater.inflate(R.layout.fragment_market, container, false);
         ButterKnife.bind(this, view);
         initData();
-        market_listView.setInterface(this);
-        marketAdapter = new MarketAdapter(marketItems, context);
-        market_listView.setAdapter(marketAdapter);
+//        market_listView.setInterface(this);
+//        marketAdapter = new MarketAdapter(marketItems, context);
+//        market_listView.setAdapter(marketAdapter);
+        showList(marketItems);
         return view;
     }
 
@@ -160,7 +161,7 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
                 //加载刷新数据
                 setRefreshData();
                 //显示界面
-//                showList(marketItems);
+                showList(marketItems);
                 //通知listview 刷新数据完毕；
                 market_listView.refreshComplete();
             }

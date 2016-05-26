@@ -1,5 +1,6 @@
 package com.xyh.easywashcar.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -7,12 +8,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 
 import com.xyh.easywashcar.R;
+import com.xyh.easywashcar.base.MyAppcation;
 import com.xyh.easywashcar.fragment.HomePageFragment;
 import com.xyh.easywashcar.fragment.InformationFragment;
 import com.xyh.easywashcar.fragment.MarketFragment;
@@ -26,7 +31,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 //记得继承FragmentActivity
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
     @Bind(R.id.view_pagerlayout_id)
@@ -41,11 +46,13 @@ public class MainActivity extends FragmentActivity {
     RadioButton home;
     @Bind(R.id.mine_id)
     RadioButton contact;
-
+    @Bind(R.id.left_login_id)
+    Button login;
     //绑定左拉菜单
     @Bind(R.id.left_menu_listView_id)
     ListView left_menu_listView;
 
+    private long exitTime;
     private MyPagerAdapter myPagerAdapter;
     private List<Fragment> fragments = new ArrayList<>();
     //左拉菜单listview适配器
@@ -64,10 +71,16 @@ public class MainActivity extends FragmentActivity {
         initLeftMenuData();
         //滑动界面时候,按钮也被选中
         viewPager.setOnPageChangeListener(new PageChangeListener());
+        viewPager.setOffscreenPageLimit(3);
         //按钮选中时候,界面也被滑动
         radioGroup.setOnCheckedChangeListener(new CheckedChangeListener());
         leftMenuAdapter = new SimpleAdapter(this, leftMenuDatas, R.layout.item_listview, from, to);
         left_menu_listView.setAdapter(leftMenuAdapter);
+        setOnClickListener();
+    }
+
+    private void setOnClickListener() {
+        login.setOnClickListener(this);
     }
 
 
@@ -90,6 +103,32 @@ public class MainActivity extends FragmentActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.anim_none, R.anim.anim_main_out);
+    }
+
+    //两秒内按两次及以上返回就退出
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                MyAppcation.myToast("再按一次退出程序");
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+            }
+            //不返回true, 按一次就退出.因为它会执行下面的return super.onKeyDown(keyCode, event);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        switch (v.getId()) {
+            case R.id.left_login_id:
+                startActivity(intent);
+                break;
+        }
     }
 
 
@@ -148,7 +187,6 @@ public class MainActivity extends FragmentActivity {
 
     //初始化四个碎片数据
     public void initViewPagerData() {
-        Log.d(TAG, "--------initViewPagerData: 你他妈执行了吗");
         HomePageFragment homePageFragment = new HomePageFragment(MainActivity.this);
         MarketFragment marketFragment = new MarketFragment(MainActivity.this);
         MineFragment mineFragment = new MineFragment(MainActivity.this);

@@ -33,6 +33,7 @@
 
     <!--优惠券和车库-->
     <LinearLayout
+        android:id="@+id/mine_head_layout_id"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"

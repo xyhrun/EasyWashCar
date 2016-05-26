@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!--*******************登录标题***********************-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <Button android:id="@+id/previous_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="@mipmap/previous"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_black"
+            android:text="登录"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+    <!--*******************分割线***********************-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/color_white"/>
+
+
+
+    <!--*******************账号和密码***********************-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/color_white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_marginRight="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/login_user"/>
+
+            <EditText android:id="@+id/account_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="手机号码/用户名"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_marginRight="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/lock"/>
+
+            <EditText android:id="@+id/password_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="textPassword"
+                android:hint="密码"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <!--*******************分割线***********************-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+
+    <!--*******************登录按钮***********************-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent"/>
+
+        <Button android:id="@+id/login_btn_id"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="登录"
+            android:textSize="20sp"
+            android:textColor="@color/color_white"
+            android:background="@color/color_deepGray"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+    <!--*******************分割线***********************-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
+
+    <!--*******************找回密码或者注册***********************-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button android:id="@+id/retrieve_password_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:text="找回密码"
+            android:background="@color/background"/>
+
+        <Button android:id="@+id/register_account_id"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注册账号"
+            android:background="@color/background"/>
+    </RelativeLayout>
+</LinearLayout>

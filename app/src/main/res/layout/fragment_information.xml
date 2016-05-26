@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:background="@color/background">
 
         <TextView
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorColor="#FFFF2F3C"
-        app:tabSelectedTextColor="#FF6AFF8D"
+        app:tabSelectedTextColor="@color/theme_blue_deep"
         app:tabTextColor="#FF2A101F"
         android:textSize="20sp"/>
 
@@ -35,10 +35,10 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent">-->
 
-        <!--<FrameLayout-->
-            <!--android:id="@+id/information_content_id"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"></FrameLayout>-->
+        <FrameLayout
+            android:id="@+id/information_content_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
     <!--</android.support.v4.view.ViewPager>-->
 
 </LinearLayout>

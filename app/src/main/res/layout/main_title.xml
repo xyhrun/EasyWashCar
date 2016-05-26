@@ -1,22 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/color_white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/color_white">
 
-    <TextView android:id="@+id/title_id"
-        android:layout_centerInParent="true"
+    <ImageView android:id="@+id/main_situate_id"
+        android:layout_centerVertical="true"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:paddingLeft="5dp"
+        android:layout_alignParentLeft="true"
+        android:src="@mipmap/situate" />
+
+    <TextView
+        android:id="@+id/city_name_id"
         android:layout_width="wrap_content"
-        android:text="@string/toobar_title"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="武汉"
+        android:layout_toRightOf="@+id/main_situate_id"
+        android:layout_centerVertical="true"
+        android:textColor="@color/color_black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/title_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/toobar_title"
         android:textColor="@color/color_black"
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <ImageView android:layout_marginRight="10dp"
+    <ImageView android:id="@+id/main_erweima_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
         android:src="@mipmap/erweima_2" />
 </RelativeLayout>
