@@ -22,7 +22,8 @@
 
         <activity android:name=".activity.Gridview_1" />
         <activity android:name=".activity.Coupon" />
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

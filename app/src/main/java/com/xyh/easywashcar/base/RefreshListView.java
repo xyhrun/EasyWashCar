@@ -125,13 +125,11 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
             case MotionEvent.ACTION_UP:
                 if (state == RELEASE) {
                     state = REFRESHING;
-                    Logger.d("-----松开 刷新");
                     refreshViewByState();
                     iRefreshListener.onRefresh();
                 } else if (state ==PULL){
                     state = NORMAL;
                     isTouch = false;
-                    Logger.d("-----松开 恢复");
                     refreshViewByState();
                 }
                 break;
@@ -195,29 +193,25 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
                 topPadding(-headerHeight);
                 break;
             case PULL:
-                Logger.d("---"+arrow);
                 arrow.setVisibility(View.VISIBLE);
                 progress.setVisibility(View.GONE);
-                tip.setText("下拉可以刷新");
-                Logger.d("------"+tip.getText());
+                tip.setText("下拉刷新");
                 arrow.clearAnimation();
                 arrow.setAnimation(anim2);
                 break;
             case RELEASE:
                 arrow.setVisibility(View.VISIBLE);
                 progress.setVisibility(View.GONE);
-                tip.setText("松开可以刷新");
-                Logger.d("------"+tip.getText());
+                tip.setText("释放立即刷新");
                 arrow.clearAnimation();
                 arrow.setAnimation(anim1);
                 break;
             case REFRESHING:
                 arrow.clearAnimation();
-                topPadding(50);
+                topPadding(20);
                 arrow.setVisibility(View.GONE);
                 progress.setVisibility(View.VISIBLE);
-                tip.setText("正在刷新");
-                Logger.d("------"+tip.getText());
+                tip.setText("正在刷新...");
                 break;
 
         }

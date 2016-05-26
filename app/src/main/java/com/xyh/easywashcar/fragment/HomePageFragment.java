@@ -63,6 +63,7 @@ public class HomePageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "------HomePageFragment onCreateView: ");
         View view = inflater.inflate(R.layout.fragment_homepage, container, false);
         ButterKnife.bind(this, view);
         initGridViewData();
@@ -74,13 +75,18 @@ public class HomePageFragment extends Fragment {
         return view;
     }
 
-
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.i(TAG, "-----HomePageFragment onActivityCreated: ");
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewPagerTask = new ViewPagerTask();
         viewPagerTask.execute();
+        Log.i(TAG, "-----HomePageFragment onCreate: ");
 //        使用handler失败,界面无响应,卡死
 //       new Handler().post(new Runnable() {
 //            @Override
@@ -206,5 +212,11 @@ public class HomePageFragment extends Fragment {
     public void onStop() {
         super.onStop();
         Log.i(TAG, "------ HomePageFragment onStop: ");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.i(TAG, "------ HomePageFragment onDestroyView: ");
     }
 }

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<!--注意布局,外面要用LInearLayout包裹,要不见不到文字-->
+<!--注意布局,外面要用LinearLayout包裹,要不见不到文字-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/color_plieon">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -25,13 +26,15 @@
                 android:id="@+id/header_tip_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/color_black"
                 android:text="下拉可以刷新" />
 
             <TextView
                 android:id="@+id/header_lastrefresh_time_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp" />
+                android:textColor="@color/color_black"
+                android:layout_marginTop="5dp" />
         </LinearLayout>
 
         <ImageView

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fitsSystemWindows="false"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/theme_blue">
@@ -17,16 +18,17 @@
     <Button
         android:id="@+id/mine_login_id"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="24dp"
         android:layout_below="@+id/main_headimg_id"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/shape_button_login"
         android:paddingBottom="3dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingTop="3dp"
         android:text="立即登录"
+        android:textSize="12sp"
         android:textColor="@color/color_white" />
 
     <!--优惠券和车库-->
@@ -35,7 +37,7 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/mine_login_id"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@color/color_plieon"
         android:gravity="center_vertical"
         android:orientation="horizontal">

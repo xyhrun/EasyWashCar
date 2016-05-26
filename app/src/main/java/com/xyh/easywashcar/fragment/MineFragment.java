@@ -24,9 +24,11 @@ public class MineFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "------MineFragment onCreateView: ");
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         return view;
     }
+
 
     @Override
     public void onStop() {
@@ -38,5 +40,11 @@ public class MineFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "------ MineFragment onDestroy: ");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.i(TAG, "------ MineFragment onDestroyView: ");
     }
 }

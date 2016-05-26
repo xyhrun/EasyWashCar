@@ -45,19 +45,22 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        Log.i(TAG, "------MarketFragment onCreateView: ");
         View view = inflater.inflate(R.layout.fragment_market, container, false);
         ButterKnife.bind(this, view);
         initData();
         market_listView.setInterface(this);
         marketAdapter = new MarketAdapter(marketItems, context);
         market_listView.setAdapter(marketAdapter);
-//        showList(marketItems);
         return view;
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
 //        marketSwipeRefresh.setColorSchemeResources(android.R.color.holo_blue_bright,
 //                android.R.color.holo_green_light,
 //                android.R.color.holo_orange_light,
@@ -76,11 +79,21 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
 
     }
 
+    //重新返回该碎片时候数据不变,下拉刷新添加的不会出现
+    @Override
+    public void onStart() {
+        super.onStart();
+//        initData();
+//        showList(marketItems);
+        Log.i(TAG, "------ MarketFragment onStart: ");
+    }
 
+    //重新返回该碎片时候数据不变,下拉刷新添加的不会出现
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+//        initData();
+//        showList(marketItems);
     }
 
     private void showList(ArrayList<MarketItem> marketItems) {
@@ -131,27 +144,13 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
     }
 
     private void setRefreshData() {
-        MarketItem marketItem1 = new MarketItem("刷新数据1", R.mipmap.car_service_shop07, "武昌区南湖花园瑞安街刘胖子旁",
-                "4.0", "11条评论", "2.00km", "普通洗车-5座轿车", "￥22");
-        MarketItem marketItem2 = new MarketItem("刷新数据2", R.mipmap.car_service_shop08, "武昌区平安路11号",
-                "4.3", "33条评论", "2.42km", "普通洗车-5座轿车", "￥20");
-        marketItems.add(0, marketItem2);
-        marketItems.add(0, marketItem1);
-
+        MarketItem marketItem1 = new MarketItem("车酷汽车养护(保利心语店)", R.mipmap.car_service_shop05, "洪山区野芷湖西路保利心语7栋34号",
+                "5.0", "156条评论", "1.80km", "普通洗车-5座轿车", "￥20");
+        MarketItem marketItem2 = new MarketItem("邓禄普轮胎(卓凯店)", R.mipmap.car_service_shop03, "洪山区南湖大道马湖村还建楼",
+                "4.2", "46条评论", "1.63km", "普通洗车-5座轿车", "￥22");
+        marketItems.add(marketItem1);
+        marketItems.add(marketItem2);
     }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.i(TAG, "------ MarketFragment onStop: ");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.i(TAG, "------ MarketFragment onDestroy: ");
-    }
-
     @Override
     public void onRefresh() {
 
@@ -168,4 +167,24 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
         }, 2000);
 
     }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i(TAG, "------ MarketFragment onStop: ");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "------ MarketFragment onDestroy: ");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.i(TAG, "------ MarketFragment onDestroyView: ");
+    }
+
 }

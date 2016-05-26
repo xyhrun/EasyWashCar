@@ -14,8 +14,8 @@ import android.widget.SimpleAdapter;
 
 import com.xyh.easywashcar.R;
 import com.xyh.easywashcar.fragment.HomePageFragment;
+import com.xyh.easywashcar.fragment.InformationFragment;
 import com.xyh.easywashcar.fragment.MarketFragment;
-import com.xyh.easywashcar.fragment.MessageFragment;
 import com.xyh.easywashcar.fragment.MineFragment;
 
 import java.util.ArrayList;
@@ -152,7 +152,7 @@ public class MainActivity extends FragmentActivity {
         HomePageFragment homePageFragment = new HomePageFragment(MainActivity.this);
         MarketFragment marketFragment = new MarketFragment(MainActivity.this);
         MineFragment mineFragment = new MineFragment(MainActivity.this);
-        MessageFragment messageFragment = new MessageFragment(MainActivity.this);
+        InformationFragment messageFragment = new InformationFragment(MainActivity.this);
         fragments.add(homePageFragment);
         fragments.add(marketFragment);
         fragments.add(messageFragment);
