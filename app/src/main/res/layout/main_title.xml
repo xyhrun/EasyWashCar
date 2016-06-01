@@ -8,7 +8,7 @@
         android:layout_centerVertical="true"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:paddingLeft="5dp"
+        android:paddingLeft="10dp"
         android:layout_alignParentLeft="true"
         android:src="@mipmap/situate" />
 
@@ -16,13 +16,12 @@
         android:id="@+id/city_name_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="2dp"
         android:text="武汉"
         android:layout_toRightOf="@+id/main_situate_id"
         android:layout_centerVertical="true"
         android:textColor="@color/color_black"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="18sp" />
 
 
     <TextView

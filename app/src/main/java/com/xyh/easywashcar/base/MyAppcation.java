@@ -12,7 +12,7 @@ import com.android.volley.toolbox.Volley;
  */
 public class MyAppcation extends Application {
     private static Context context;
-    private RequestQueue mRequestQueue;
+    private static RequestQueue mRequestQueue;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -28,7 +28,7 @@ public class MyAppcation extends Application {
         return context;
     }
 
-    public RequestQueue getRequestQueue() {
+    public static RequestQueue getRequestQueue() {
         return mRequestQueue;
     }
 

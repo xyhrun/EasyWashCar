@@ -2,6 +2,7 @@ package com.xyh.easywashcar.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -17,7 +18,6 @@ import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 
 import com.xyh.easywashcar.R;
-import com.xyh.easywashcar.base.MyAppcation;
 import com.xyh.easywashcar.fragment.HomePageFragment;
 import com.xyh.easywashcar.fragment.InformationFragment;
 import com.xyh.easywashcar.fragment.MarketFragment;
@@ -109,9 +109,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if ((System.currentTimeMillis() - exitTime) > 2000) {
-                MyAppcation.myToast("再按一次退出程序");
-                exitTime = System.currentTimeMillis();
+            long secondExitTime = System.currentTimeMillis();
+            if ((secondExitTime - exitTime) > 2000) {
+                Snackbar sb = Snackbar.make(radioGroup, "再按一次退出", Snackbar.LENGTH_SHORT);
+                sb.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_blue_dark));
+                sb.show();
+//                MyAppcation.myToast("再按一次退出程序");
+                exitTime = secondExitTime;
             } else {
                 finish();
             }
