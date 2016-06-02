@@ -40,9 +40,18 @@ public class NewsContent {
     private String title;    //标题
     private String desc;      //简要
     private String pubDate;   //发布时间
-//    private String resourceLink;   //原文链接
+    private String sourceLink;   //原文链接
     private String resource;     //原文来自
-    private String imgUrl;
+    private String imgUrl;         //图片链接
+    private String html;        //html文本
+
+    public String getHtml() {
+        return html;
+    }
+
+    public void setHtml(String html) {
+        this.html = html;
+    }
 
     public String getImgUrl() {
         return imgUrl;
@@ -84,4 +93,11 @@ public class NewsContent {
         this.resource = resource;
     }
 
+    public String getSourceLink() {
+        return sourceLink;
+    }
+
+    public void setSourceLink(String sourceLink) {
+        this.sourceLink = sourceLink;
+    }
 }

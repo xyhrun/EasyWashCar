@@ -27,7 +27,7 @@ public class RecommendNewsAdapter extends BaseAdapter implements AbsListView.OnS
     private List<NewsContent> newsContentList;
     private NewsContentViewHolder newsContentViewHolder;
     private int mStart, mEnd;
-    private ImageLoaderByAsyncTask imageLoaderByAsyncTask1;
+    private ImageLoaderByAsyncTask imageLoaderByAsyncTask;
     private ListView mListView;
     public static String[] urls;
     private boolean firstIn;
@@ -37,7 +37,8 @@ public class RecommendNewsAdapter extends BaseAdapter implements AbsListView.OnS
         this.newsContentList = newsContentList;
         this.mListView = mListView;
         mListView.setOnScrollListener(this);
-        imageLoaderByAsyncTask1 = new ImageLoaderByAsyncTask(mListView);
+        //保证只有一个imageLoaderByAsyncTask,为了优化缓存.
+        imageLoaderByAsyncTask = new ImageLoaderByAsyncTask(mListView);
         urls = new String[newsContentList.size()];
         firstIn = true;
         for (int i = 0; i < newsContentList.size(); i++) {
@@ -49,8 +50,6 @@ public class RecommendNewsAdapter extends BaseAdapter implements AbsListView.OnS
             }
         }
         mLayoutInflater = LayoutInflater.from(mContext);
-        //保证只有一个ImageLoaderByHandler,为了优化缓存.
-//        imageLoaderByHandler = new ImageLoaderByHandler();
     }
 
     @Override
@@ -72,6 +71,7 @@ public class RecommendNewsAdapter extends BaseAdapter implements AbsListView.OnS
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Log.d(TAG, "++getView: 执行了吗");
         newsContentViewHolder = null;
         if (convertView == null) {
             convertView = mLayoutInflater.inflate(R.layout.item_news, parent, false);
@@ -87,21 +87,21 @@ public class RecommendNewsAdapter extends BaseAdapter implements AbsListView.OnS
         String pubDate = newsContent.getPubDate();
         String resource = newsContent.getResource();
         String imgUrl = newsContent.getImgUrl();
-        if (imgUrl == null) {
-            imgUrl = "http://news.xinhuanet.com/auto/2016-05/31/129029190_14646548423041n.jpg";
-        }
-
-            newsContentViewHolder.newsImg.setImageResource(R.mipmap.ic_launcher);
-            Log.d(TAG, "-------getView: "+imgUrl);
-            //对图片设置标记
-            newsContentViewHolder.newsImg.setTag(imgUrl);
-            //加载解析图片的方法
-            imageLoaderByAsyncTask1.showImageByAsyncTask(imgUrl, newsContentViewHolder.newsImg);
 
         newsContentViewHolder.newsTitle.setText(title);
 //        newsContentViewHolder.newsDesc.setText(desc);
         newsContentViewHolder.newsPubDate.setText(pubDate);
         newsContentViewHolder.newsResource.setText(resource);
+//        先设置默认图片
+        newsContentViewHolder.newsImg.setImageResource(R.mipmap.ic_launcher);
+        if (imgUrl == null) {
+            imgUrl = "http://news.xinhuanet.com/auto/2016-05/31/129029190_14646548423041n.jpg";
+        }
+            Log.d(TAG, "-------getView: "+imgUrl);
+            //对图片设置标记
+            newsContentViewHolder.newsImg.setTag(imgUrl);
+            //加载解析图片的方法
+            imageLoaderByAsyncTask.showImageByAsyncTask(imgUrl, newsContentViewHolder.newsImg);
 
         return convertView;
     }
@@ -111,10 +111,10 @@ public class RecommendNewsAdapter extends BaseAdapter implements AbsListView.OnS
         //对滑动状态做处理
         if (scrollState == SCROLL_STATE_IDLE) {
             //没有滑动则加载数据
-            imageLoaderByAsyncTask1.loadImages(mStart, mEnd);
+            imageLoaderByAsyncTask.loadImages(mStart, mEnd);
         } else {
             //滑动中不加载数据
-            imageLoaderByAsyncTask1.cancelAllTasks();
+            imageLoaderByAsyncTask.cancelAllTasks();
         }
     }
 
@@ -124,7 +124,7 @@ public class RecommendNewsAdapter extends BaseAdapter implements AbsListView.OnS
         mEnd = mStart + visibleItemCount;
         //visibleItemCount会调用多次,第一次调用为0
         if (firstIn && visibleItemCount > 0) {
-            imageLoaderByAsyncTask1.loadImages(mStart, mEnd);
+            imageLoaderByAsyncTask.loadImages(mStart, mEnd);
         }
         firstIn = false;
     }

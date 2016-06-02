@@ -26,7 +26,8 @@
         android:id="@+id/information_tabLayout_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIndicatorColor="#FFFF2F3C"
+        app:tabIndicatorColor="@color/theme_blue_deep"
+        app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/theme_blue_deep"
         app:tabTextColor="#FF2A101F"
         android:textSize="20sp"/>

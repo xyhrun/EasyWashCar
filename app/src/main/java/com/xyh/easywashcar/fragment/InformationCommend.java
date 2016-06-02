@@ -1,14 +1,15 @@
 package com.xyh.easywashcar.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.AuthFailureError;
@@ -17,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.xyh.easywashcar.R;
+import com.xyh.easywashcar.activity.NewsContentActivity;
 import com.xyh.easywashcar.adapter.RecommendNewsAdapter;
 import com.xyh.easywashcar.base.MyAppcation;
 import com.xyh.easywashcar.model.NewsContent;
@@ -36,28 +38,29 @@ import butterknife.ButterKnife;
 /**
  * Created by 向阳湖 on 2016/5/25.
  */
-public class InformationCommend extends Fragment {
+public class InformationCommend extends Fragment implements AdapterView.OnItemClickListener {
 
     @Bind(R.id.news_listView_id)
     ListView mListView;
-    private static final String URL = "http://www.imooc.com/api/teacher?type=4&num=30";
 //    @Bind(R.id.news_content_id)
 //    TextView content;
     private static final String TAG = "InformationCommend";
-    private Handler handler = new Handler();
     private String apikey = "6b956c46fa58a90ab9bdb8c55c1b70f1";
     private String httpPrefixUrl = "http://apis.baidu.com/showapi_open_bus/channel_news/search_news";
     //汽车频道
-    private String httpArg = "channelId=5572a109b3cdc86cf39001e5&channelName=%E5%9B%BD%E5%86%85%E6%9C%80%E6%96%B0&title=%E4%B8%8A%E5%B8%82&page=1&needContent=0&needHtml=0";
+    private String httpArg = "channelId=5572a109b3cdc86cf39001e5&channelName=%E5%9B%BD%E5%86%85%E6%9C%80%E6%96%B0&title=%E4%B8%8A%E5%B8%82&page=1&needContent=0&needHtml=1";
     private String url = httpPrefixUrl + "?" + httpArg;
-    private String response;
     private Context mContext;
     private LayoutInflater layoutInflater;
     private List<NewsContent> newsContentList;
     private RecommendNewsAdapter recommendNewsAdapter;
+
+    //创建newsContent的意图
+    private Intent  newsContent;
     public InformationCommend(Context context) {
         mContext = context;
         layoutInflater = LayoutInflater.from(context);
+        newsContent = new Intent(mContext, NewsContentActivity.class);
     }
     @Nullable
     @Override
@@ -70,11 +73,13 @@ public class InformationCommend extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.d(TAG, "++onActivityCreated: 新闻推荐碎片执行了吗");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-//                Logger.v(response);
+                Log.i(TAG, "onResponse: "+response);
 //                content.setText(response);
+                Log.d(TAG, "++onActivityCreated: volley执行了吗");
                 dealData(response);
             }
         }, new Response.ErrorListener() {
@@ -93,6 +98,7 @@ public class InformationCommend extends Fragment {
 
         MyAppcation.getRequestQueue().add(stringRequest);
 
+        mListView.setOnItemClickListener(this);
     }
 
     private void dealData(String response) {
@@ -122,11 +128,15 @@ public class InformationCommend extends Fragment {
                 String newsDesc = contentObject.getString("desc");
                 String newsPubDate = contentObject.getString("pubDate");
                 String newsResource = contentObject.getString("source");
+                String resourceLink = contentObject.getString("link");
+                String html = contentObject.getString("html");
                 //设置数据
                 newsContent.setTitle(newsTitle);
                 newsContent.setDesc(newsDesc);
                 newsContent.setPubDate(newsPubDate);
                 newsContent.setResource(newsResource);
+                newsContent.setSourceLink(resourceLink);
+                newsContent.setHtml(html);
 //                Log.d(TAG, "dealData: "+newsTitle);
                 newsContentList.add(newsContent);
             }
@@ -138,4 +148,12 @@ public class InformationCommend extends Fragment {
         mListView.setAdapter(recommendNewsAdapter);
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String sourceLink = newsContentList.get(position).getSourceLink();
+        String html = newsContentList.get(position).getHtml();
+        newsContent.putExtra("sourceLink", sourceLink);
+//        newsContent.putExtra("html", html);
+        startActivity(newsContent);
+    }
 }
