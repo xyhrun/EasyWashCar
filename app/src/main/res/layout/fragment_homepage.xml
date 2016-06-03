@@ -71,5 +71,5 @@
         android:layout_weight="9"
         android:gravity="center"
         android:numColumns="3"
-        android:verticalSpacing="10dp"></GridView>
+        android:verticalSpacing="20dp"></GridView>
 </LinearLayout>

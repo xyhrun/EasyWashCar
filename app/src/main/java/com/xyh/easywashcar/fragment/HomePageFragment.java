@@ -13,15 +13,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.xyh.easywashcar.R;
+import com.xyh.easywashcar.activity.ErWeiMaActivity;
 import com.xyh.easywashcar.activity.Gridview_1;
 import com.xyh.easywashcar.adapter.GridViewAdapter;
 import com.xyh.easywashcar.adapter.ViewPagerAdapter;
 import com.xyh.easywashcar.model.GridItem;
+import com.xys.libzxing.zxing.activity.CaptureActivity;
 
 import java.util.ArrayList;
 
@@ -31,8 +34,9 @@ import butterknife.ButterKnife;
 /**
  * Created by 向阳湖 on 2016/5/20.
  */
-public class HomePageFragment extends Fragment {
+public class HomePageFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "HomePageFragment";
+//    private static final int RESULT_OK = 0;
     private Context context;
     private int i = 0;
     public HomePageFragment(Context context) {
@@ -46,6 +50,8 @@ public class HomePageFragment extends Fragment {
     LinearLayout linearPonit;
     @Bind(R.id.view_pager_inner_id)
     ViewPager viewpager_inner;
+    @Bind(R.id.main_erweima_id)
+    Button erweima;
 
     //设置网格布局信息
     private ArrayList<GridItem> gridItems = new ArrayList<>();
@@ -72,6 +78,7 @@ public class HomePageFragment extends Fragment {
         gridViewAdapter = new GridViewAdapter(gridItems, context);
         gridView.setAdapter(gridViewAdapter);
         setGridViewOnClickListener();
+        erweima.setOnClickListener(this);
         return view;
     }
 
@@ -160,6 +167,24 @@ public class HomePageFragment extends Fragment {
         //用来出发监听器
         viewpager_inner.setCurrentItem(index);
         linearPonit.getChildAt(pointIndex).setEnabled(true);
+    }
+
+    @Override
+    public void onClick(View v) {
+        startActivityForResult(new Intent(context, CaptureActivity.class), 0);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == -1) {
+            Bundle bundle = data.getExtras();
+            String result = bundle.getString("result");
+            Intent erWeiMaIntent = new Intent(context, ErWeiMaActivity.class);
+            erWeiMaIntent.putExtra("result", result);
+            startActivity(erWeiMaIntent);
+            Log.i(TAG, "---onActivityResult: "+result);
+        }
     }
 
     class ViewPagerListener implements ViewPager.OnPageChangeListener {

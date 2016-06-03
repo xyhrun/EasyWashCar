@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:background="@color/color_white">
 
-    <ImageView android:id="@+id/main_situate_id"
+    <Button android:id="@+id/main_situate_id"
         android:layout_centerVertical="true"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:paddingLeft="10dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="10dp"
         android:layout_alignParentLeft="true"
-        android:src="@mipmap/situate" />
+        android:background="@mipmap/situate" />
 
     <TextView
         android:id="@+id/city_name_id"
@@ -34,11 +34,11 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <ImageView android:id="@+id/main_erweima_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Button android:id="@+id/main_erweima_id"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:src="@mipmap/erweima_2" />
+        android:layout_marginRight="12dp"
+        android:background="@mipmap/erweima2" />
 </RelativeLayout>

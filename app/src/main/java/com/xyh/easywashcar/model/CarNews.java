@@ -148,7 +148,19 @@ public class CarNews {
                 private int sentiment_display;
                 private String source;
                 private String title;
-                private List<?> imageurls;
+                private List<ImageBean> imageBeans;
+
+                public static class ImageBean {
+                    private String imageUrl;
+
+                    public String getImageUrl() {
+                        return imageUrl;
+                    }
+
+                    public ImageBean(String imageUrl) {
+                        this.imageUrl = imageUrl;
+                    }
+                }
 
                 public String getChannelId() {
                     return channelId;
@@ -238,12 +250,12 @@ public class CarNews {
                     this.title = title;
                 }
 
-                public List<?> getImageurls() {
-                    return imageurls;
+                public List<ImageBean> getImageBeans() {
+                    return imageBeans;
                 }
 
-                public void setImageurls(List<?> imageurls) {
-                    this.imageurls = imageurls;
+                public void setImageBeans(List<ImageBean> imageBeans) {
+                    this.imageBeans = imageBeans;
                 }
             }
         }

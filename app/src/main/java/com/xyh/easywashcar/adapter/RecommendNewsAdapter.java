@@ -31,8 +31,7 @@ public class RecommendNewsAdapter extends BaseAdapter implements AbsListView.OnS
     private ListView mListView;
     public static String[] urls;
     private boolean firstIn;
-
-    public RecommendNewsAdapter(Context context, List<NewsContent> newsContentList, ListView mListView) {
+    public RecommendNewsAdapter(Context context,List<NewsContent> newsContentList , ListView mListView) {
         this.mContext = context;
         this.newsContentList = newsContentList;
         this.mListView = mListView;
@@ -97,11 +96,11 @@ public class RecommendNewsAdapter extends BaseAdapter implements AbsListView.OnS
         if (imgUrl == null) {
             imgUrl = "http://news.xinhuanet.com/auto/2016-05/31/129029190_14646548423041n.jpg";
         }
-            Log.d(TAG, "-------getView: "+imgUrl);
-            //对图片设置标记
-            newsContentViewHolder.newsImg.setTag(imgUrl);
-            //加载解析图片的方法
-            imageLoaderByAsyncTask.showImageByAsyncTask(imgUrl, newsContentViewHolder.newsImg);
+        Log.d(TAG, "-------getView: "+imgUrl);
+        //对图片设置标记
+        newsContentViewHolder.newsImg.setTag(imgUrl);
+        //加载解析图片的方法
+        imageLoaderByAsyncTask.showImageByAsyncTask(imgUrl, newsContentViewHolder.newsImg);
 
         return convertView;
     }
@@ -132,7 +131,7 @@ public class RecommendNewsAdapter extends BaseAdapter implements AbsListView.OnS
     class NewsContentViewHolder {
         private ImageView newsImg;
         private TextView newsTitle;
-//        private TextView newsDesc;
+        //        private TextView newsDesc;
         private TextView newsPubDate;
         private TextView newsResource;
 

@@ -22,7 +22,7 @@
     <color name="theme_green_light">#8BC34A</color>
     <color name="theme_red">#FF5252</color>
     <color name="color_black">#000000</color>
-    <color name="color_transplant">#00000000</color>
+    <color name="color_transparent">#00000000</color>
     <color name="color_plieon">#1f000000</color>
     <color name="color_gray_light">#a9b7b7</color>
 </resources>

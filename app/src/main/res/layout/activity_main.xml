@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/color_white">
 
-    <!--主布局-->
+    <!--主布局,放在第一个-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -63,7 +63,7 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:checked="false"
-                android:drawableTop="@drawable/selector_drawable_me"
+                android:drawableTop="@drawable/selector_drawable_information"
                 android:gravity="center"
                 android:text="资讯"
                 android:textColor="@drawable/selector_text_color" />
@@ -76,7 +76,7 @@
                 android:button="@null"
                 android:checked="false"
                 android:drawablePadding="2dp"
-                android:drawableTop="@drawable/selector_drawable_contact"
+                android:drawableTop="@drawable/selector_drawable_me"
                 android:gravity="center"
                 android:text="我的"
                 android:textColor="@drawable/selector_text_color" />

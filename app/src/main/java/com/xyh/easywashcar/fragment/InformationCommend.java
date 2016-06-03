@@ -77,10 +77,10 @@ public class InformationCommend extends Fragment implements AdapterView.OnItemCl
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i(TAG, "onResponse: "+response);
-//                content.setText(response);
+//                Log.i(TAG, "onResponse: "+response);
                 Log.d(TAG, "++onActivityCreated: volley执行了吗");
                 dealData(response);
+//                dealDataByGson(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -147,6 +147,20 @@ public class InformationCommend extends Fragment implements AdapterView.OnItemCl
         recommendNewsAdapter = new RecommendNewsAdapter(mContext, newsContentList, mListView);
         mListView.setAdapter(recommendNewsAdapter);
     }
+
+//    public void dealDataByGson(String response) {
+//        List<CarNews.ShowapiResBodyBean.PagebeanBean.ContentlistBean> contentlistBeanList;
+//        List<?> imgUrls;
+//        Gson gson = new Gson();
+//        CarNews carNews = gson.fromJson(response, CarNews.class);
+//        CarNews.ShowapiResBodyBean resBodyBean = carNews.getShowapi_res_body();
+//        CarNews.ShowapiResBodyBean.PagebeanBean pagebeanBean = resBodyBean.getPagebean();
+//        contentlistBeanList = pagebeanBean.getContentlist();
+//        Log.i(TAG, "++dealDataByGson: "+contentlistBeanList.get(0).getTitle());
+//        //显示数据
+////        recommendNewsAdapter = new RecommendNewsAdapter(mContext, contentlistBeanList, mListView);
+////        mListView.setAdapter(recommendNewsAdapter);
+//    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
