@@ -18,7 +18,6 @@ public class BaseActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-
     }
 
     @Override
@@ -27,8 +26,6 @@ public class BaseActivity extends Activity {
         //复写活动过渡界面，进去从右到左，出来从左到右
         overridePendingTransition(R.anim.anim_right_in,R.anim.anim_right_out);
     }
-
-
 
 
     public void replaceFragment(int id, Fragment fragment) {

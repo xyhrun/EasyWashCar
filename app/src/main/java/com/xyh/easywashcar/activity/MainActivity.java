@@ -2,7 +2,6 @@ package com.xyh.easywashcar.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -17,7 +16,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.xyh.easywashcar.R;
+import com.xyh.easywashcar.base.MyAppcation;
 import com.xyh.easywashcar.fragment.HomePageFragment;
 import com.xyh.easywashcar.fragment.InformationFragment;
 import com.xyh.easywashcar.fragment.MarketFragment;
@@ -62,13 +63,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private ArrayList<HashMap<String, Object>> leftMenuDatas = new ArrayList<>();
     private String[] from;
     private int[] to;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SDKInitializer.initialize(MyAppcation.getContext());
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initViewPagerData();
         initLeftMenuData();
+
         //滑动界面时候,按钮也被选中
         viewPager.setOnPageChangeListener(new PageChangeListener());
         viewPager.setOffscreenPageLimit(3);
@@ -111,10 +115,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             long secondExitTime = System.currentTimeMillis();
             if ((secondExitTime - exitTime) > 2000) {
-                Snackbar sb = Snackbar.make(radioGroup, "再按一次退出", Snackbar.LENGTH_SHORT);
-                sb.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_blue_dark));
-                sb.show();
-//                MyAppcation.myToast("再按一次退出程序");
+//                Snackbar sb = Snackbar.make(radioGroup, "再按一次退出", Snackbar.LENGTH_SHORT);
+//                sb.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_blue_dark));
+//                sb.show();
+                MyAppcation.myToast("再按一次退出程序");
                 exitTime = secondExitTime;
             } else {
                 finish();

@@ -2,6 +2,8 @@ package com.xyh.easywashcar.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -42,6 +45,8 @@ public class InformationCommend extends Fragment implements AdapterView.OnItemCl
 
     @Bind(R.id.news_listView_id)
     ListView mListView;
+    @Bind(R.id.no_netWork_tip_id)
+    RelativeLayout tip;
 //    @Bind(R.id.news_content_id)
 //    TextView content;
     private static final String TAG = "InformationCommend";
@@ -74,6 +79,31 @@ public class InformationCommend extends Fragment implements AdapterView.OnItemCl
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Log.d(TAG, "++onActivityCreated: 新闻推荐碎片执行了吗");
+        if (isNetworkConnected(mContext)) {
+            tip.setVisibility(View.GONE);
+            mListView.setVisibility(View.VISIBLE);
+            getDataFromVolley();
+        } else {
+            tip.setVisibility(View.VISIBLE);
+            mListView.setVisibility(View.GONE);
+        }
+        mListView.setOnItemClickListener(this);
+    }
+
+    //判断是否有网络,有则返回true
+    public boolean isNetworkConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            if (mNetworkInfo != null) {
+                return mNetworkInfo.isAvailable();
+            }
+        }
+        return false;
+    }
+
+    private void getDataFromVolley() {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -97,8 +127,6 @@ public class InformationCommend extends Fragment implements AdapterView.OnItemCl
         };
 
         MyAppcation.getRequestQueue().add(stringRequest);
-
-        mListView.setOnItemClickListener(this);
     }
 
     private void dealData(String response) {

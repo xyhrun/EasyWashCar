@@ -30,4 +30,11 @@
         android:text="立即登录"
         android:textSize="12sp"
         android:textColor="@color/color_white" />
+
+    <!--分割线-->
+    <View android:layout_below="@id/left_login_id"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/color_plieon"/>
     </RelativeLayout>

@@ -12,7 +12,35 @@
         <!--android:layout_height="wrap_content"-->
         <!--&gt;-->
 
+    <com.baidu.mapapi.map.MapView
+        android:visibility="gone"
+        android:id="@+id/location_bdMapView_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.baidu.mapapi.map.MapView>
+
+    <RelativeLayout
+        android:id="@+id/no_netWork_tip_id1"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView android:id="@+id/no_netWork_img_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network"/>
+
+        <TextView android:layout_below="@+id/no_netWork_img_id"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="请检查你的网络状态"/>
+    </RelativeLayout>
+
         <com.xyh.easywashcar.base.RefreshListView
+            android:visibility="visible"
             android:background="@color/color_white"
             android:id="@+id/market_listView_id"
             android:scrollIndicators="none"

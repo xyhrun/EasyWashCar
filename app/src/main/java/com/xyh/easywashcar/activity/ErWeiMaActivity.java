@@ -5,11 +5,10 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.xyh.easywashcar.R;
+import com.xyh.easywashcar.base.ProgressWebView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,7 +19,7 @@ import butterknife.ButterKnife;
 public class ErWeiMaActivity extends Activity {
 
     @Bind(R.id.erWeiMa_webView_id)
-    WebView mWebView;
+    ProgressWebView mWebView;
     @Bind(R.id.erWeiMa_result_id)
     TextView erWeiMa_result;
     @Override
@@ -29,9 +28,11 @@ public class ErWeiMaActivity extends Activity {
         setContentView(R.layout.erweima);
         ButterKnife.bind(this);
         String url = getIntent().getStringExtra("result");
+        //若是链接含有weixin就加载下面那个链接,让他下载微信客户端
         if (url.contains("http://weixin.qq.com")) {
             url = "https://weixin.qq.com/cgi-bin/readtemplate?t=weixin";
         }
+        //如果连接不是以http开头就把扫描的结果放到textview显示出来
         if (!url.startsWith("http")) {
             erWeiMa_result.setVisibility(View.VISIBLE);
             mWebView.setVisibility(View.GONE);
@@ -41,6 +42,13 @@ public class ErWeiMaActivity extends Activity {
     }
 
     private void showResult(String sourceLink) {
+        //网页全屏
+        mWebView.getSettings().setLoadWithOverviewMode(true);
+        //设置WebView可触摸放大缩小：
+        mWebView.getSettings().setBuiltInZoomControls(true);
+//        WebView双击变大，再双击后变小，当手动放大后，双击可以恢复到原始大小，如下设置：
+        mWebView.getSettings().setUseWideViewPort(true);
+
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         // 开启DOM storage API 功能
@@ -52,13 +60,6 @@ public class ErWeiMaActivity extends Activity {
 
         mWebView.loadUrl(sourceLink);
         //覆盖WebView通过第三方浏览器访问网页的行为，使得网页在WebView中打开
-        mWebView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
-        });
     }
         @Override
         public boolean onKeyDown(int keyCode, KeyEvent event) {

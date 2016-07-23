@@ -17,7 +17,17 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.MyLocationConfiguration;
+import com.baidu.mapapi.search.poi.PoiSearch;
 import com.xyh.easywashcar.R;
 import com.xyh.easywashcar.activity.ErWeiMaActivity;
 import com.xyh.easywashcar.activity.Gridview_1;
@@ -53,6 +63,19 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     @Bind(R.id.main_erweima_id)
     Button erweima;
 
+    @Bind(R.id.main_bdMapView_id)
+    MapView mMapView;
+    @Bind(R.id.city_name_id)
+    TextView city_name;
+
+    //百度地图
+    private BaiduMap mBaiduMap;
+    private PoiSearch mPoiSearch;
+    private MyLocationListener myListener = new MyLocationListener();
+    private LocationClient mLocationClient;
+    public static String currentCity;
+
+
     //设置网格布局信息
     private ArrayList<GridItem> gridItems = new ArrayList<>();
     private GridViewAdapter gridViewAdapter;
@@ -72,6 +95,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         Log.i(TAG, "------HomePageFragment onCreateView: ");
         View view = inflater.inflate(R.layout.fragment_homepage, container, false);
         ButterKnife.bind(this, view);
+        mBaiduMap = mMapView.getMap();
+        mLocationClient = new LocationClient(context);
+        mPoiSearch = PoiSearch.newInstance();
         initGridViewData();
         initViewPagerData();
         initAction();
@@ -79,7 +105,25 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         gridView.setAdapter(gridViewAdapter);
         setGridViewOnClickListener();
         erweima.setOnClickListener(this);
+        initBaiduMap();
         return view;
+    }
+
+    private void initBaiduMap() {
+        initLocation();
+        //设置定位图层
+        mBaiduMap.setMyLocationEnabled(true);
+        mLocationClient.registerLocationListener(myListener);
+        Log.i(TAG, "------ MarketFragment onStart: ");
+
+        mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(MyLocationConfiguration.LocationMode.NORMAL
+                , true, BitmapDescriptorFactory.fromResource(R.mipmap.situate)));
+        mLocationClient.start();
+        //每页默认显示10条数据, PgaeNum分页编号
+//        Log.i(TAG, "onClick: city = "+currentCity);
+        if (currentCity != null) {
+            mLocationClient.stop();
+        }
     }
 
     @Override
@@ -175,6 +219,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        city_name.setText(currentCity);
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == -1) {
@@ -243,5 +293,49 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     public void onDestroyView() {
         super.onDestroyView();
         Log.i(TAG, "------ HomePageFragment onDestroyView: ");
+    }
+
+    private class MyLocationListener implements BDLocationListener {
+        @Override
+        public void onReceiveLocation(BDLocation bdLocation) {
+            //        获取定位类型: 参考 定位结果描述 相关的字段
+//            Log.i(TAG, "onCreate: locType = " + bdLocation.getLocType()); // 161,网络定位结果，网络定位定位成功
+            currentCity = bdLocation.getCity();
+            city_name.setText(currentCity);
+        }
+    }
+
+    private void initLocation() {
+        LocationClientOption option = new LocationClientOption();
+        //可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
+        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
+        //可选，默认gcj02，设置返回的定位结果坐标系
+        option.setCoorType("bd09ll");
+//        设置是否打开gps进行定位
+        option.setOpenGps(true);
+//        //可选，设置是否需要地址信息，默认不需要.有了它才可以才可以获取到城市和省信息
+        option.setIsNeedAddress(true);
+//        设置扫描间隔，单位是毫秒 当<1000(1s)时，定时定位无效
+        option.setScanSpan(2000);
+        //可选，默认false，设置是否当gps有效时按照1S1次频率输出GPS结果
+        option.setLocationNotify(true);
+//        //可选，默认false，设置是否需要位置语义化结果，可以在BDLocation.getLocationDescribe里得到，结果类似于“在北京天安门附近”
+        option.setIsNeedLocationDescribe(true);
+//        //可选，默认false，设置是否需要POI结果，可以在BDLocation.getPoiList里得到
+        option.setIsNeedLocationPoiList(true);
+//        //可选，默认true，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认不杀死
+//        option.setIgnoreKillProcess(false);
+//        //可选，默认false，设置是否收集CRASH信息，默认收集
+//        option.SetIgnoreCacheException(false);
+//        //可选，默认false，设置是否需要过滤gps仿真结果，默认需要
+//        option.setEnableSimulateGps(false);
+        mLocationClient.setLocOption(option);
+    }
+
+    public static String getCurrentCity() {
+        if (currentCity != null) {
+            return currentCity;
+        }
+        return null;
     }
 }

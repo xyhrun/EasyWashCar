@@ -2,6 +2,7 @@
 <!--左菜单视图 android:layout_gravity="start" 从左拉开-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:clickable="true"
     android:id="@+id/left_menu_id"
     android:layout_height="match_parent"
     android:layout_gravity="start"
@@ -11,12 +12,6 @@
 
         <include android:id="@+id/left_menu_head_id"
             layout="@layout/left_menu_head" />
-
-    <!--分割线-->
-        <View android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/color_plieon"/>
 
         <ListView
             android:layout_marginLeft="20dp"

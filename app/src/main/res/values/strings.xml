@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">爱易洗车</string>
+    <string name="app_name">易洗车</string>
 
-    <string name="toobar_title">爱易洗车</string>
+    <string name="toobar_title">易洗车</string>
 
     <string-array name="city">
         <item>武汉市</item>

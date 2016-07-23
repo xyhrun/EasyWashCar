@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * Created by 向阳湖 on 2016/5/19.
  */
 public class ViewPagerAdapter extends PagerAdapter {
+    private static final String TAG = "ViewPagerAdapter";
     private ArrayList<ImageView> imageViews;
     private Context context;
 
@@ -37,7 +38,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         container.addView(imageViews.get(position%imageViews.size()));
         View view = imageViews.get(position % imageViews.size());
-
+//        Log.i(TAG, "instantiateItem: "+position % imageViews.size());
         //页面点击事件
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,5 +52,6 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView(imageViews.get(position % imageViews.size()));
+//        Log.i(TAG, "destroyItem: "+position % imageViews.size());
     }
 }

@@ -19,22 +19,38 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <Spinner android:id="@+id/market_city_name_id"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:entries="@array/city"></Spinner>
+            <!--<Spinner android:id="@+id/market_city_name_id"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:entries="@array/city"></Spinner>-->
 
-            <Spinner android:id="@+id/market_service_id"
+            <!--<Spinner android:id="@+id/market_service_id"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:entries="@array/service"></Spinner>-->
+
+            <Button android:id="@+id/market_btn_searchSome_id"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:entries="@array/service"></Spinner>
+                android:text="搜索洗车"
+                android:layout_weight="1"/>
+
+            <ToggleButton android:id="@+id/market_togBtn_changMode_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textOff="地图模式"
+                android:checked="false"
+                android:textOn="初始模式"
+                android:layout_weight="1"/>
 
             <Spinner android:id="@+id/market_priority_id"
+                android:background="@color/background"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:entries="@array/priority"></Spinner>
         </LinearLayout>
 </LinearLayout>

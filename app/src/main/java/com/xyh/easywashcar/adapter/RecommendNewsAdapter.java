@@ -92,7 +92,7 @@ public class RecommendNewsAdapter extends BaseAdapter implements AbsListView.OnS
         newsContentViewHolder.newsPubDate.setText(pubDate);
         newsContentViewHolder.newsResource.setText(resource);
 //        先设置默认图片
-        newsContentViewHolder.newsImg.setImageResource(R.mipmap.ic_launcher);
+        newsContentViewHolder.newsImg.setImageResource(R.mipmap.default_car);
         if (imgUrl == null) {
             imgUrl = "http://news.xinhuanet.com/auto/2016-05/31/129029190_14646548423041n.jpg";
         }

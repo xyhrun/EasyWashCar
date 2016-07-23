@@ -58,7 +58,7 @@ public class ImageLoaderByAsyncTask {
         //如果缓存中没有，那么必须下载
         if (bitmap == null)
         {
-            imageView.setImageResource(R.mipmap.ic_launcher);
+            imageView.setImageResource(R.mipmap.default_car);
         }else {
             imageView.setImageBitmap(bitmap);
         }

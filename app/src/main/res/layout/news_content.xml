@@ -8,8 +8,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-    <WebView
+    <com.xyh.easywashcar.base.ProgressWebView
         android:id="@+id/webView_id"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></WebView>
+        android:layout_height="match_parent"></com.xyh.easywashcar.base.ProgressWebView>
 </android.support.v4.widget.NestedScrollView>

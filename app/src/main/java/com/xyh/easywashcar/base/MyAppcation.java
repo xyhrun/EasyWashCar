@@ -24,6 +24,10 @@ public class MyAppcation extends Application {
         Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
     }
 
+    public static void myLongToast(String str) {
+        Toast.makeText(context, str, Toast.LENGTH_LONG).show();
+    }
+
     public static Context getContext() {
         return context;
     }
