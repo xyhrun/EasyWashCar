@@ -30,7 +30,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -171,6 +176,25 @@ public class InformationCommend extends Fragment implements AdapterView.OnItemCl
         } catch (JSONException e) {
             e.printStackTrace();
         }
+//      最新消息显示在上面
+        Collections.sort(newsContentList, new Comparator<NewsContent>() {
+            @Override
+            public int compare(NewsContent lhs, NewsContent rhs) {
+                Date lDate = null;
+                Date rDate = null;
+                try {
+                    lDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(lhs.getPubDate());
+                    rDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rhs.getPubDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                if (lDate.before(rDate)) {
+                    return 1;
+                }
+                return -1;
+            }
+        });
         //显示数据
         recommendNewsAdapter = new RecommendNewsAdapter(mContext, newsContentList, mListView);
         mListView.setAdapter(recommendNewsAdapter);

@@ -10,7 +10,7 @@
         <!--android:id="@+id/market_swipeRefreshLayout_id"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
-        <!--&gt;-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"/>-->
 
     <com.baidu.mapapi.map.MapView
         android:visibility="gone"
@@ -43,8 +43,6 @@
             android:visibility="visible"
             android:background="@color/color_white"
             android:id="@+id/market_listView_id"
-            android:scrollIndicators="none"
-            android:scrollbars="none"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></com.xyh.easywashcar.base.RefreshListView>
     <!--</android.support.v4.widget.SwipeRefreshLayout>-->

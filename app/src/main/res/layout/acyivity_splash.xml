@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
      android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/splash">
+    android:background="@mipmap/launcher_car">
 
 
 
@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="欢迎使用易洗车软件"
+            android:text="读万卷书 行万里路"
             android:textSize="25sp"/>
     </com.facebook.shimmer.ShimmerFrameLayout>
 </RelativeLayout>

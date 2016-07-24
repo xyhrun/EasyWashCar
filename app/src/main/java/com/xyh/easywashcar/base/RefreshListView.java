@@ -213,7 +213,6 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
                 progress.setVisibility(View.VISIBLE);
                 tip.setText("正在刷新...");
                 break;
-
         }
     }
 

@@ -68,6 +68,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     @Bind(R.id.city_name_id)
     TextView city_name;
 
+
     //百度地图
     private BaiduMap mBaiduMap;
     private PoiSearch mPoiSearch;
@@ -138,22 +139,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         viewPagerTask = new ViewPagerTask();
         viewPagerTask.execute();
         Log.i(TAG, "-----HomePageFragment onCreate: ");
-//        使用handler失败,界面无响应,卡死
-//       new Handler().post(new Runnable() {
-//            @Override
-//            public void run() {
-//                while (isPlaying) {
-//                    SystemClock.sleep(2000);
-//
-//                    getActivity().runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            viewpager_inner.setCurrentItem(viewpager_inner.getCurrentItem() + 1);
-//                        }
-//                    });
-//                }
-//            }
-//        });
+
     }
 
     private void setGridViewOnClickListener() {

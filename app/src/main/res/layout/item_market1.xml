@@ -6,7 +6,7 @@
 
     <View android:background="@color/background"
         android:layout_width="match_parent"
-        android:layout_height="5dp"/>
+        android:layout_height="7dp"/>
 
     <LinearLayout
         android:layout_marginLeft="5dp"
@@ -47,7 +47,7 @@
 
                 <!--门店图~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                 <ImageView android:id="@+id/wash_car_shop_img"
-                    android:layout_width="100dp"
+                    android:layout_width="120dp"
                     android:layout_height="80dp"
                     android:scaleType="fitXY"/>
 
@@ -62,7 +62,7 @@
                     <TextView android:id="@+id/wash_car_shop_address_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="洪山区马湖村8号保利心语七"
+                        android:textColor="@color/color_black"
                         android:ellipsize="end"/>
 
                     <RelativeLayout
@@ -78,7 +78,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
-                            android:text="11.58km"/>
+                            android:textColor="@color/color_black" />
 
                         <Button android:id="@+id/wash_car_pay_id"
                             android:layout_alignParentRight="true"
@@ -95,10 +95,6 @@
             </LinearLayout>
         </LinearLayout>
         <!--点击事件一  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/background"/>
 
         <!--账单,点击事件二~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 

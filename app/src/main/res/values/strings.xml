@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">易洗车</string>
+    <string name="app_name">爱易洗车</string>
 
-    <string name="toobar_title">易洗车</string>
+    <string name="toobar_title">爱易洗车</string>
 
     <string-array name="city">
         <item>武汉市</item>
@@ -21,12 +21,14 @@
         <item>其他区</item>
     </string-array>
 
-    <string-array name="service">
-        <item >服务</item>
-        <item>普通洗车-5座</item>
-        <item>普通洗车-7座</item>
-        <item>精细洗车-5座</item>
-        <item>精细洗车-7座</item>
+    <string-array name="distance">
+        <item>范围</item>
+        <item>5km</item>
+        <item>10km</item>
+        <item>20km</item>
+        <item>40km</item>
+        <item>60km</item>
+        <item>100km</item>
     </string-array>
 
     <string-array name="priority">
