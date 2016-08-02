@@ -156,7 +156,6 @@ public class InformationFragment extends Fragment {
         if (necessarySupply != null) {
             transaction.hide(necessarySupply);
         }
-
     }
 
     @Override

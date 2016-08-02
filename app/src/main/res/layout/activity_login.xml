@@ -105,6 +105,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="登录"
+            android:elevation="5dp"
             android:textSize="20sp"
             android:textColor="@color/color_white"
             android:background="@color/color_deepGray"/>

@@ -10,13 +10,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -66,32 +67,32 @@ import butterknife.ButterKnife;
 /**
  * Created by 向阳湖 on 2016/5/20.
  */
-public class MarketFragment extends Fragment implements RefreshListView.IRefreshListener, View.OnClickListener {
+public class MarketFragment extends Fragment implements RefreshListView.IRefreshListener, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
     @Bind(R.id.market_listView_id)
-    RefreshListView market_listView;
+    ListView market_listView;
     @Bind(R.id.no_netWork_tip_id1)
     RelativeLayout tip1;
     @Bind(R.id.location_bdMapView_id)
     MapView mMapView;
-    @Bind(R.id.market_btn_searchSome_id)
-    Button btn_search;
+//    @Bind(R.id.market_btn_searchSome_id)
+//    Button btn_search;
     @Bind(R.id.market_togBtn_changMode_id)
     ToggleButton togBtn_changMode;
     @Bind(R.id.market_distance_id)
     Spinner market_distance;
+    @Bind(R.id.market_swipeRefreshLayout_id)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private TextView dialog_detailInfo;
     private MarketAdapter1 marketAdapter1;
     private int selectDistance;
     private int preSelectDistance = 6;
 
-//    @Bind(R.id.market_swipeRefreshLayout_id)
-//    SwipeRefreshLayout marketSwipeRefresh;
-
-
     //  private boolean isRefresh = false;
     private static final String TAG = "MarketFragment";
 
+    //门店的数量
+    private int itemSize;
     private Context context;
 
     //百度地图
@@ -123,6 +124,8 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
         SDKInitializer.initialize(MyAppcation.getContext());
         View view = inflater.inflate(R.layout.fragment_market, container, false);
         ButterKnife.bind(this, view);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.color_green_blue);
         mBaiduMap = mMapView.getMap();
         mLocationClient = new LocationClient(context);
         mPoiSearch = PoiSearch.newInstance();
@@ -159,8 +162,20 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
         mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(MyLocationConfiguration.LocationMode.COMPASS
                 , true, null));
         mLocationClient.start();
-        //刷新展示数据
-        showList(marketItem1List);
+        mSwipeRefreshLayout.setRefreshing(true);
+        //延迟一秒,否则出现定位还没成功,则开始搜索.造成 java.lang.IllegalArgumentException: option or location or keyworld can not be null
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setRefreshData();
+                //如果没有显示数据
+                if (marketAdapter1 == null) {
+                    marketAdapter1 = new MarketAdapter1(marketItem1List, context, uidList, mPoiSearch);
+                    market_listView.setAdapter(marketAdapter1);
+                }
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        }, 1000);
     }
 
     //重新返回该碎片时候数据不变,下拉刷新添加的不会出现
@@ -170,7 +185,6 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
     }
 
     private void setClick() {
-        btn_search.setOnClickListener(this);
         togBtn_changMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -256,11 +270,11 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
                 dialog_detailInfo = (TextView) dialog.findViewById(R.id.dialog_detailInfo_id);
                 dialog_detailInfo.setText(
                         "名称 :  " + poiDetailResult.getName()
-                        + "\n评分 :  " + poiDetailResult.getOverallRating()
-                        + "\n价格 :  " + poiDetailResult.getPrice()
+                                + "\n评分 :  " + poiDetailResult.getOverallRating()
+                                + "\n价格 :  " + poiDetailResult.getPrice()
                                 + "\n手机 :  " + poiDetailResult.getTelephone()
                                 + "\n评论 :  " + poiDetailResult.getCommentNum()
-                        +"\n地址 :  "+poiDetailResult.getAddress());
+                                + "\n地址 :  " + poiDetailResult.getAddress());
 //                Log.i(TAG, "onGetPoiDetailResult: " + dialog_detailInfo.getText().toString());
                 mAlertDialog = new AlertDialog.Builder(context).setView(dialog)
                         .setPositiveButton("网页查看", new DialogInterface.OnClickListener() {
@@ -283,13 +297,13 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
         market_distance.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.i(TAG, "onItemSelected: posiontion"+position);
+                Log.i(TAG, "onItemSelected: posiontion" + position);
                 String distance = getResources().getStringArray(R.array.distance)[position].trim();
                 //利用正则表达式,在字符串中只保留数字
-                String regEx="[^0-9]";
+                String regEx = "[^0-9]";
                 Pattern p = Pattern.compile(regEx);
                 Matcher m = p.matcher(distance);
-                String DistanceStr =  m.replaceAll("").trim();
+                String DistanceStr = m.replaceAll("").trim();
                 //默认5km搜索
                 int finalDistance = 5;
                 if (DistanceStr != "") {
@@ -310,9 +324,9 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
 //                    market_listView.setAdapter(marketAdapter1);
 //                }
 
-                if (mCurrentLatLng != null && DistanceStr!= "") {
+                if (mCurrentLatLng != null && DistanceStr != "") {
                     PoiNearbySearchOption mPoiNearbySearchOption = new PoiNearbySearchOption().location(mCurrentLatLng)
-                            .radius(selectDistance * 1000+100).keyword("洗车").pageCapacity(10).pageNum(pageNum++);  //半径单位m
+                            .radius(selectDistance * 1000 + 100).keyword("洗车").pageCapacity(10).pageNum(pageNum++);  //半径单位m
                     mPoiSearch.searchNearby(mPoiNearbySearchOption);
                     mLocationClient.stop();
                     if (marketAdapter1 == null) {
@@ -321,9 +335,9 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
                     market_listView.setAdapter(marketAdapter1);
                 }
 
-                Log.i(TAG, "---onItemSelected: currentCity = "+currentCity);
-                Log.i(TAG, "---onItemSelected: 来自home = "+HomePageFragment.getCurrentCity());
-                Log.i(TAG, "onItemSelected: 距离范围"+distance);
+                Log.i(TAG, "---onItemSelected: currentCity = " + currentCity);
+                Log.i(TAG, "---onItemSelected: 来自home = " + HomePageFragment.getCurrentCity());
+                Log.i(TAG, "onItemSelected: 距离范围" + distance);
 
             }
 
@@ -342,41 +356,33 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
 //        showList(marketItems);
     }
 
-    private void showList(ArrayList<MarketItem1> marketItems) {
-        if (marketAdapter1 == null) {
-            market_listView.setInterface(this);
-            marketAdapter1 = new MarketAdapter1(marketItems, context, uidList, mPoiSearch);
-            market_listView.setAdapter(marketAdapter1);
-        }
-        else {
-            Logger.d("------else onDataChange");
-            marketAdapter1.onDateChange(marketItems);
-        }
-    }
-
     private void setRefreshData() {
         PoiNearbySearchOption mPoiNearbySearchOption = new PoiNearbySearchOption().location(mCurrentLatLng)
-                .radius(selectDistance * 1000+100).keyword("洗车").pageCapacity(10).pageNum(pageNum++);  //半径单位m
+                .radius(selectDistance * 1000 + 100).keyword("洗车").pageCapacity(10).pageNum(pageNum++);  //半径单位m
         mPoiSearch.searchNearby(mPoiNearbySearchOption);
         mLocationClient.stop();
-
     }
 
     @Override
     public void onRefresh() {
+        //延迟一秒,否则出现定位还没成功,则开始搜索.造成 java.lang.IllegalArgumentException: option or location or keyworld can not be null
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //在原来基础上加载数据
-//                isRefresh = true;
-                //加载刷新数据
+//                之前门店的数量
+                itemSize = marketItem1List.size();
                 setRefreshData();
-                //显示界面
-                showList(marketItem1List);
-                //通知listview 刷新数据完毕；
-                market_listView.refreshComplete();
+                //如果没有显示数据
+                if (marketAdapter1 == null) {
+                    marketAdapter1 = new MarketAdapter1(marketItem1List, context, uidList, mPoiSearch);
+                    market_listView.setAdapter(marketAdapter1);
+                } else {
+                    Logger.d("------else onDataChange");
+                    marketAdapter1.onDateChange(marketItem1List);
+                }
+                mSwipeRefreshLayout.setRefreshing(false);
             }
-        }, 2000);
+        }, 1000);
     }
 
 
@@ -459,16 +465,26 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
     public void onClick(View v) {
         switch (v.getId()) {
             //每页默认显示10条数据, PgaeNum分页编号
-            case R.id.market_btn_searchSome_id:
-                if (mCurrentLatLng != null) {
-                    //默认3km搜索. 由于四舍五入导致19.5~19.9这种数据无法加载到范围为20km里面.故此在原搜索范围上+0.1km
-                        PoiNearbySearchOption mPoiNearbySearchOption = new PoiNearbySearchOption().location(mCurrentLatLng)
-                                .radius(selectDistance * 1000+100).keyword("洗车").pageCapacity(10).pageNum(pageNum++);  //半径单位m
-                        mPoiSearch.searchNearby(mPoiNearbySearchOption);
-                        mLocationClient.stop();
-                        market_listView.setAdapter(marketAdapter1);
-                    }
-                break;
+//            case R.id.market_btn_searchSome_id:
+//                if (mCurrentLatLng != null) {
+//                    //门店的个数
+//                    itemSize = marketItem1List.size();
+//                    //默认3km搜索. 由于四舍五入导致19.5~19.9这种数据无法加载到范围为20km里面.故此在原搜索范围上+0.1km
+//                    PoiNearbySearchOption mPoiNearbySearchOption = new PoiNearbySearchOption().location(mCurrentLatLng)
+//                            .radius(selectDistance * 1000 + 100).keyword("洗车").pageCapacity(10).pageNum(pageNum++);  //半径单位m
+//                    mPoiSearch.searchNearby(mPoiNearbySearchOption);
+//                    mLocationClient.stop();
+//                    market_listView.setAdapter(marketAdapter1);
+//
+//                    //如果增加了数据则显示添加多少, 否则显示数据无变化
+//                    int diffSize = marketItem1List.size() -  itemSize;
+//                    if (diffSize > 0) {
+//                        MyAppcation.myToast("新发现了" + diffSize + "个门店");
+//                    } else {
+//                        MyAppcation.myToast("没有发现新的门店");
+//                    }
+//                }
+//                break;
         }
 
     }
