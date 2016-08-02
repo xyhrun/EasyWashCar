@@ -3,7 +3,7 @@
      android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/color_white">
+    android:background="@color/background">
 
     <RelativeLayout
         android:id="@+id/no_netWork_tip_id"
@@ -26,8 +26,13 @@
             android:text="请检查你的网络状态"/>
     </RelativeLayout>
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <ListView android:id="@+id/news_listView_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></ListView>
-
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

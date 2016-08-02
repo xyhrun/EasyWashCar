@@ -7,7 +7,16 @@ public class MarketItem1 {
     private String name;
     private String address;
     private double distance;
-//    private String phoneNum;
+    private String uid;
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+    //    private String phoneNum;
 
 
     public String getName() {

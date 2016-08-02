@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/toobar_title"
+        android:elevation="10dp"
         android:textColor="@color/color_black"
         android:textSize="20sp"
         android:textStyle="bold" />

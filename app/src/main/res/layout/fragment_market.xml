@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
     android:layout_height="match_parent">
 
     <include layout="@layout/market_head" />
@@ -40,9 +41,8 @@
     </RelativeLayout>
 
         <com.xyh.easywashcar.base.RefreshListView
-            android:visibility="visible"
-            android:background="@color/color_white"
             android:id="@+id/market_listView_id"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></com.xyh.easywashcar.base.RefreshListView>
     <!--</android.support.v4.widget.SwipeRefreshLayout>-->

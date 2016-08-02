@@ -225,6 +225,7 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
                     marketItem1.setName(mPoiInfo.name);
                     marketItem1.setAddress(mPoiInfo.address);
                     marketItem1.setDistance(realDistance);
+                    marketItem1.setUid(mPoiInfo.uid);
                     marketItem1List.add(marketItem1);
                     uidList.add(mPoiInfo.uid);
                     Log.i(TAG, "onGetPoiResult: 百度类求距离 = " + DistanceUtil.getDistance(mCurrentLatLng, desLatlng));

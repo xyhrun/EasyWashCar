@@ -100,7 +100,7 @@ public class MarketAdapter1 extends BaseAdapter {
         marketItemViewHolder.detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MarketFragment.showDetailInfo(uidList.get(position));
+                MarketFragment.showDetailInfo(marketItems.get(position).getUid());
             }
         });
 

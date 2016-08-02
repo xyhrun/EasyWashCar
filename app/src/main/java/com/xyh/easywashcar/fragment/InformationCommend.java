@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,14 +48,17 @@ import butterknife.ButterKnife;
 /**
  * Created by 向阳湖 on 2016/5/25.
  */
-public class InformationCommend extends Fragment implements AdapterView.OnItemClickListener {
+public class InformationCommend extends Fragment implements AdapterView.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     @Bind(R.id.news_listView_id)
     ListView mListView;
+    @Bind(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
     @Bind(R.id.no_netWork_tip_id)
     RelativeLayout tip;
 //    @Bind(R.id.news_content_id)
 //    TextView content;
+
     private static final String TAG = "InformationCommend";
     private String apikey = "6b956c46fa58a90ab9bdb8c55c1b70f1";
     private String httpPrefixUrl = "http://apis.baidu.com/showapi_open_bus/channel_news/search_news";
@@ -77,6 +82,8 @@ public class InformationCommend extends Fragment implements AdapterView.OnItemCl
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = layoutInflater.inflate(R.layout.information_commend, container, false);
         ButterKnife.bind(this, view);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.color_green_blue);
         return view;
     }
 
@@ -123,6 +130,7 @@ public class InformationCommend extends Fragment implements AdapterView.OnItemCl
 
             }
         }){
+            //添加header, 里面存放的是apikey
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
@@ -221,5 +229,17 @@ public class InformationCommend extends Fragment implements AdapterView.OnItemCl
         newsContent.putExtra("sourceLink", sourceLink);
 //        newsContent.putExtra("html", html);
         startActivity(newsContent);
+    }
+
+    @Override
+    public void onRefresh() {
+        if (mSwipeRefreshLayout.isRefreshing()) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
+            }, 1500);
+        }
     }
 }

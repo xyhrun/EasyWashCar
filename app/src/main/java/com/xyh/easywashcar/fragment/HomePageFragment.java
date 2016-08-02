@@ -178,7 +178,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
             //设置小圆点
             view = new View(context);
-            params = new ViewGroup.LayoutParams(40, 40);
+            params = new ViewGroup.LayoutParams(30, 30);
             view.setBackgroundResource(R.drawable.selector_drawable_point);
             view.setLayoutParams(params);
             view.setEnabled(false);

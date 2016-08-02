@@ -4,12 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/color_white">
+    android:background="@color/background">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/background">
+        android:layout_height="60dp">
 
         <TextView
             android:id="@+id/information_title_id"
@@ -27,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorColor="@color/theme_blue_deep"
+        android:background="@color/color_white"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/theme_blue_deep"
         app:tabTextColor="#FF2A101F"
