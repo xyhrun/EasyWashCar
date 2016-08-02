@@ -9,7 +9,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -67,7 +66,7 @@ import butterknife.ButterKnife;
 /**
  * Created by 向阳湖 on 2016/5/20.
  */
-public class MarketFragment extends Fragment implements RefreshListView.IRefreshListener, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class MarketFragment extends android.support.v4.app.Fragment implements RefreshListView.IRefreshListener, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
     @Bind(R.id.market_listView_id)
     ListView market_listView;
     @Bind(R.id.no_netWork_tip_id1)
@@ -217,7 +216,7 @@ public class MarketFragment extends Fragment implements RefreshListView.IRefresh
                 myPoiOverlay.zoomToSpan();
                 List<PoiInfo> poiInfoList = poiResult.getAllPoi();
                 if (poiInfoList == null) {
-                    MyAppcation.myToast("此范围没有洗车店或者信息已获取完");
+//                    MyAppcation.myToast("此范围没有洗车店或者信息已获取完");
                     return;
                 }
                 Log.i(TAG, "onGetPoiResult: " + poiInfoList);

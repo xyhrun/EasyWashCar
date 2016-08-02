@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -35,8 +33,6 @@ import butterknife.ButterKnife;
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
-    @Bind(R.id.view_pagerlayout_id)
-    ViewPager viewPager;
     @Bind(R.id.radiogroup_id)
     RadioGroup radioGroup;
     @Bind(R.id.market_id)
@@ -54,7 +50,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     ListView left_menu_listView;
 
     private long exitTime;
-    private MyPagerAdapter myPagerAdapter;
+
     private List<Fragment> fragments = new ArrayList<>();
     //左拉菜单listview适配器
     private SimpleAdapter leftMenuAdapter;
@@ -64,18 +60,23 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private String[] from;
     private int[] to;
 
+    private android.support.v4.app.FragmentTransaction mFragmentTransaction;
+    private android.support.v4.app.FragmentManager mFragmentManager;
+
+    private HomePageFragment homePageFragment;
+    private MarketFragment marketFragment;
+    private InformationFragment messageFragment;
+    private MineFragment mineFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SDKInitializer.initialize(MyAppcation.getContext());
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        initViewPagerData();
+        initData();
         initLeftMenuData();
 
-        //滑动界面时候,按钮也被选中
-        viewPager.setOnPageChangeListener(new PageChangeListener());
-        viewPager.setOffscreenPageLimit(3);
         //按钮选中时候,界面也被滑动
         radioGroup.setOnCheckedChangeListener(new CheckedChangeListener());
         leftMenuAdapter = new SimpleAdapter(this, leftMenuDatas, R.layout.item_listview, from, to);
@@ -94,9 +95,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         imgNames = new String[]{"活动", "收藏"};
         from = new String[]{"img", "imgName"};
         to = new int[]{R.id.left_menu_img_id, R.id.left_menu_imgName_id};
-        for(int i = 0 ; i < imgs.length; i++) {
+        for (int i = 0; i < imgs.length; i++) {
             HashMap<String, Object> hashmap = new HashMap<>();
-            hashmap.put("img",imgs[i]);
+            hashmap.put("img", imgs[i]);
             hashmap.put("imgName", imgNames[i]);
             leftMenuDatas.add(hashmap);
         }
@@ -145,86 +146,57 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
+            FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
             switch (checkedId) {
                 case R.id.home_id:
-                    viewPager.setCurrentItem(0);
+                    hideAllFragment(mFragmentTransaction);
+                    mFragmentTransaction.show(homePageFragment);
                     break;
                 case R.id.market_id:
-                    viewPager.setCurrentItem(1);
+                    hideAllFragment(mFragmentTransaction);
+                    mFragmentTransaction.show(marketFragment);
+                    Log.i(TAG, "onCheckedChanged: 门店按钮执行了吗");
                     break;
                 case R.id.resource_id:
-                    viewPager.setCurrentItem(2);
+                    hideAllFragment(mFragmentTransaction);
+                    mFragmentTransaction.show(messageFragment);
                     break;
                 case R.id.mine_id:
-                    viewPager.setCurrentItem(3);
+                    hideAllFragment(mFragmentTransaction);
+                    mFragmentTransaction.show(mineFragment);
+                    break;
+                default:
                     break;
             }
+            mFragmentTransaction.commit();
         }
     }
 
-    //滑动时候绑定按钮事件
-    class PageChangeListener implements ViewPager.OnPageChangeListener {
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-            switch (position) {
-                case 0:
-                    radioGroup.check(R.id.home_id);
-                    break;
-                case 1:
-                    radioGroup.check(R.id.market_id);
-                    break;
-                case 2:
-                    radioGroup.check(R.id.resource_id);
-                    break;
-                case 3:
-                    radioGroup.check(R.id.mine_id);
-                    break;
-            }
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    }
 
     //初始化四个碎片数据
-    public void initViewPagerData() {
-        HomePageFragment homePageFragment = new HomePageFragment(MainActivity.this);
-        MarketFragment marketFragment = new MarketFragment(MainActivity.this);
-        MineFragment mineFragment = new MineFragment(MainActivity.this);
-        InformationFragment messageFragment = new InformationFragment(MainActivity.this);
-        fragments.add(homePageFragment);
-        fragments.add(marketFragment);
-        fragments.add(messageFragment);
-        fragments.add(mineFragment);
-        myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
-        //有值
-        Log.d(TAG, "------initViewPagerData: " + myPagerAdapter);
-        viewPager.setAdapter(myPagerAdapter);
+    private void initData() {
+        homePageFragment = new HomePageFragment(MainActivity.this);
+        marketFragment = new MarketFragment(MainActivity.this);
+        mineFragment = new MineFragment(MainActivity.this);
+        messageFragment = new InformationFragment(MainActivity.this);
+
+        mFragmentManager = getSupportFragmentManager();
+        mFragmentTransaction = mFragmentManager.beginTransaction();
+        mFragmentTransaction.add(R.id.main_fragment_id, homePageFragment);
+        mFragmentTransaction.add(R.id.main_fragment_id, marketFragment);
+        mFragmentTransaction.add(R.id.main_fragment_id, messageFragment);
+        mFragmentTransaction.add(R.id.main_fragment_id, mineFragment);
+
+        mFragmentTransaction.hide(marketFragment);
+        mFragmentTransaction.hide(messageFragment);
+        mFragmentTransaction.hide(mineFragment);
+        mFragmentTransaction.commit();
     }
 
-    //设置滑动适配器,滑动哪里加载哪个碎片
-    class MyPagerAdapter extends FragmentPagerAdapter {
-
-        public MyPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return fragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return fragments.size();
-        }
+    private void hideAllFragment(FragmentTransaction mFragmentTransaction) {
+        mFragmentTransaction.hide(homePageFragment);
+        mFragmentTransaction.hide(marketFragment);
+        mFragmentTransaction.hide(messageFragment);
+        mFragmentTransaction.hide(mineFragment);
     }
-
 }

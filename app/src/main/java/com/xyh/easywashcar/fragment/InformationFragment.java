@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,11 +39,13 @@ public class InformationFragment extends Fragment {
     private InformationCommend informationCommend;
     private CarCyclopaedia carCyclopaedia;
     private NecessarySupply necessarySupply;
+
     @Bind(R.id.information_tabLayout_id)
     TabLayout mTabLayout;
 
     @Bind(R.id.information_content_id)
     FrameLayout mContent;
+
 
     @Nullable
     @Override
@@ -114,8 +115,7 @@ public class InformationFragment extends Fragment {
     }
 
     private void setTabSelection(int selectedTabPosition) {
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         hideFragments(fragmentTransaction);
         switch (selectedTabPosition) {
             case 0:

@@ -10,13 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--不能用align radiogroup,否则不显示-->
-        <android.support.v4.view.ViewPager
-            android:id="@+id/view_pagerlayout_id"
+        <LinearLayout android:id="@+id/main_fragment_id"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/radiogroup_id"
-            android:layout_alignParentTop="true"></android.support.v4.view.ViewPager>
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/radiogroup_id"></LinearLayout>
+        <!--&lt;!&ndash;不能用align radiogroup,否则不显示&ndash;&gt;-->
+        <!--<android.support.v4.view.ViewPager-->
+            <!--android:id="@+id/view_pagerlayout_id"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_above="@+id/radiogroup_id"-->
+            <!--android:layout_alignParentTop="true"></android.support.v4.view.ViewPager>-->
 
         <!--底部按钮-->
 

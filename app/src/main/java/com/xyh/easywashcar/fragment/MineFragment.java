@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * Created by 向阳湖 on 2016/5/20.
  */
-public class MineFragment extends Fragment implements View.OnClickListener {
+public class MineFragment extends android.support.v4.app.Fragment implements View.OnClickListener {
     @Bind(R.id.mine_login_id)
     Button mine_login;
     @Bind(R.id.mine_head_layout_id)
