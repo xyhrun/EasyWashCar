@@ -25,16 +25,18 @@
         android:id="@+id/information_tabLayout_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIndicatorColor="@color/theme_blue_deep"
+        app:tabIndicatorColor="@color/color_transparent"
         android:background="@color/color_white"
         app:tabMode="scrollable"
+        app:tabTextColor="@color/color_black"
         app:tabSelectedTextColor="@color/theme_blue_deep"
-        app:tabTextColor="#FF2A101F"
         android:textSize="20sp"/>
 
     <!--<android.support.v4.view.ViewPager-->
         <!--android:id="@+id/information_viewPager_id"-->
-        <!--android:layout_width="match_parent"-->
+        <!--android:layout_width="match_parent"
+
+         app:tabIndicatorColor="@color/theme_blue_deep"-->
         <!--android:layout_height="match_parent">-->
 
         <FrameLayout

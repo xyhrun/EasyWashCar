@@ -39,11 +39,13 @@
             android:layout_weight="1"
             android:gravity="center">
 
-            <Spinner
-                android:id="@+id/market_priority_id"
+            <Button
+                android:id="@+id/market_btn_searchSome_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/priority"></Spinner>
+                android:elevation="4dp"
+                android:text="搜索"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <ToggleButton
@@ -54,9 +56,9 @@
             android:background="@color/color_transparent"
             android:checked="false"
             android:gravity="center"
-            android:textSize="15sp"
             android:textOff="地图模式"
-            android:textOn="初始模式" />
+            android:textOn="初始模式"
+            android:textSize="15sp" />
 
         <!--<Button android:id="@+id/market_btn_searchSome_id"-->
         <!--android:layout_width="0dp"-->

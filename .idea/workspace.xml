@@ -32,6 +32,11 @@
           <theme>@android:style/Theme.NoTitleBar</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/information_commend.xml">
+        <config>
+          <theme>@android:style/Theme.NoTitleBar</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_news.xml">
         <config>
           <theme>@android:style/Theme.NoTitleBar</theme>
@@ -60,27 +65,31 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="INFO" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" line="478" mnemonic="1" />
     <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" line="97" mnemonic="2" />
     <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" line="168" mnemonic="3" />
-    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" line="189" mnemonic="4" />
-    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" line="451" mnemonic="5" />
-    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" line="254" mnemonic="6" />
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" line="186" mnemonic="4" />
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" line="441" mnemonic="5" />
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" line="250" mnemonic="6" />
     <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/HomePageFragment.java" line="207" mnemonic="7" />
-    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" line="313" mnemonic="8" />
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" line="316" mnemonic="8" />
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" line="365" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a94669d-4179-4d8d-b720-b28a84fbd0fd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/shape_btn_search.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/activity/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/adapter/MarketAdapter1.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/adapter/MarketAdapter1.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/InformationFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/InformationFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MineFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MineFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_information.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_information.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_market.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_market.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/information_commend.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/information_commend.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/market_head.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/market_head.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libzxing/libzxing.iml" afterPath="$PROJECT_DIR$/libzxing/libzxing.iml" />
     </list>
     <ignored path="EasyWashCar.iws" />
@@ -122,239 +131,83 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/activity/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="182" column="55" selection-start-line="182" selection-start-column="55" selection-end-line="182" selection-end-column="55" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Activity.java" pinned="false" current-in-tab="false">
-        <entry file="file://D:/AndroidStudio/SDK/sources/android-23/android/app/Activity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1915" column="27" selection-start-line="1915" selection-start-column="27" selection-end-line="1915" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#280082#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#37036#37051#0" expanded="false" />
-                <element signature="e#38135#38136#0" expanded="false" />
-                <element signature="e#38165#38166#0" expanded="false" />
-                <element signature="e#38552#38553#0" expanded="false" />
-                <element signature="e#38587#38588#0" expanded="false" />
-                <element signature="e#38695#38696#0" expanded="false" />
-                <element signature="e#38730#38731#0" expanded="false" />
-                <element signature="e#38833#38834#0" expanded="false" />
-                <element signature="e#38871#38872#0" expanded="false" />
-                <element signature="e#38985#38986#0" expanded="false" />
-                <element signature="e#39015#39016#0" expanded="false" />
-                <element signature="e#39129#39130#0" expanded="false" />
-                <element signature="e#39166#39167#0" expanded="false" />
-                <element signature="e#39514#39515#0" expanded="false" />
-                <element signature="e#39544#39545#0" expanded="false" />
-                <element signature="e#39681#39682#0" expanded="false" />
-                <element signature="e#39733#39734#0" expanded="false" />
-                <element signature="e#40075#40076#0" expanded="false" />
-                <element signature="e#40148#40149#0" expanded="false" />
-                <element signature="e#48983#48984#0" expanded="false" />
-                <element signature="e#49035#49036#0" expanded="false" />
-                <element signature="e#52431#52432#0" expanded="false" />
-                <element signature="e#52461#52462#0" expanded="false" />
-                <element signature="e#55061#55062#0" expanded="false" />
-                <element signature="e#55108#55109#0" expanded="false" />
-                <element signature="e#55966#55967#0" expanded="false" />
-                <element signature="e#56005#56006#0" expanded="false" />
-                <element signature="e#67446#67447#0" expanded="false" />
-                <element signature="e#67474#67475#0" expanded="false" />
-                <element signature="e#68254#68255#0" expanded="false" />
-                <element signature="e#68281#68282#0" expanded="false" />
-                <element signature="e#78226#78227#0" expanded="false" />
-                <element signature="e#78267#78268#0" expanded="false" />
-                <element signature="e#82550#82551#0" expanded="false" />
-                <element signature="e#82577#82578#0" expanded="false" />
-                <element signature="e#84275#84276#0" expanded="false" />
-                <element signature="e#84302#84303#0" expanded="false" />
-                <element signature="e#92856#92857#0" expanded="false" />
-                <element signature="e#92907#92908#0" expanded="false" />
-                <element signature="e#99266#99267#0" expanded="false" />
-                <element signature="e#99318#99319#0" expanded="false" />
-                <element signature="e#99488#99489#0" expanded="false" />
-                <element signature="e#99542#99543#0" expanded="false" />
-                <element signature="e#107363#107364#0" expanded="false" />
-                <element signature="e#107391#107392#0" expanded="false" />
-                <element signature="e#108766#108767#0" expanded="false" />
-                <element signature="e#108794#108795#0" expanded="false" />
-                <element signature="e#111490#111491#0" expanded="false" />
-                <element signature="e#111518#111519#0" expanded="false" />
-                <element signature="e#112748#112749#0" expanded="false" />
-                <element signature="e#112776#112777#0" expanded="false" />
-                <element signature="e#117258#117259#0" expanded="false" />
-                <element signature="e#117282#117283#0" expanded="false" />
-                <element signature="e#121787#121788#0" expanded="false" />
-                <element signature="e#121814#121815#0" expanded="false" />
-                <element signature="e#133758#133759#0" expanded="false" />
-                <element signature="e#133795#133796#0" expanded="false" />
-                <element signature="e#138032#138033#0" expanded="false" />
-                <element signature="e#138089#138090#0" expanded="false" />
-                <element signature="e#138425#138426#0" expanded="false" />
-                <element signature="e#138482#138483#0" expanded="false" />
-                <element signature="e#138784#138785#0" expanded="false" />
-                <element signature="e#138822#138823#0" expanded="false" />
-                <element signature="e#140695#140696#0" expanded="false" />
-                <element signature="e#140722#140723#0" expanded="false" />
-                <element signature="e#142424#142425#0" expanded="false" />
-                <element signature="e#142465#142466#0" expanded="false" />
-                <element signature="e#142659#142660#0" expanded="false" />
-                <element signature="e#142704#142705#0" expanded="false" />
-                <element signature="e#144414#144415#0" expanded="false" />
-                <element signature="e#144450#144451#0" expanded="false" />
-                <element signature="e#151513#151514#0" expanded="false" />
-                <element signature="e#151548#151549#0" expanded="false" />
-                <element signature="e#154871#154872#0" expanded="false" />
-                <element signature="e#154917#154918#0" expanded="false" />
-                <element signature="e#156672#156673#0" expanded="false" />
-                <element signature="e#156726#156727#0" expanded="false" />
-                <element signature="e#178899#178900#0" expanded="false" />
-                <element signature="e#178947#178948#0" expanded="false" />
-                <element signature="e#180755#180756#0" expanded="false" />
-                <element signature="e#180801#180802#0" expanded="false" />
-                <element signature="e#196008#196009#0" expanded="false" />
-                <element signature="e#196035#196036#0" expanded="false" />
-                <element signature="e#202194#202195#0" expanded="false" />
-                <element signature="e#202221#202222#0" expanded="false" />
-                <element signature="e#205912#205913#0" expanded="false" />
-                <element signature="e#205944#205945#0" expanded="false" />
-                <element signature="e#206123#206124#0" expanded="false" />
-                <element signature="e#206156#206157#0" expanded="false" />
-                <element signature="e#206720#206721#0" expanded="false" />
-                <element signature="e#206766#206767#0" expanded="false" />
-                <element signature="e#208671#208672#0" expanded="false" />
-                <element signature="e#208700#208701#0" expanded="false" />
-                <element signature="e#210420#210421#0" expanded="false" />
-                <element signature="e#210444#210445#0" expanded="false" />
-                <element signature="e#212615#212616#0" expanded="false" />
-                <element signature="e#212643#212644#0" expanded="false" />
-                <element signature="e#222590#222591#0" expanded="false" />
-                <element signature="e#222623#222624#0" expanded="false" />
-                <element signature="e#224858#224859#0" expanded="false" />
-                <element signature="e#224900#224901#0" expanded="false" />
-                <element signature="e#225492#225493#0" expanded="false" />
-                <element signature="e#225521#225522#0" expanded="false" />
-                <element signature="e#225561#225562#0" expanded="false" />
-                <element signature="e#225595#225596#0" expanded="false" />
-                <element signature="e#232061#232062#0" expanded="false" />
-                <element signature="e#232120#232121#0" expanded="false" />
-                <element signature="e#233529#233530#0" expanded="false" />
-                <element signature="e#233584#233585#0" expanded="false" />
-                <element signature="e#234727#234728#0" expanded="false" />
-                <element signature="e#234754#234755#0" expanded="false" />
-                <element signature="e#246717#246718#0" expanded="false" />
-                <element signature="e#246747#246748#0" expanded="false" />
-                <element signature="e#261243#261244#0" expanded="false" />
-                <element signature="e#261309#261310#0" expanded="false" />
-                <element signature="e#261778#261779#0" expanded="false" />
-                <element signature="e#261810#261811#0" expanded="false" />
-                <element signature="e#270644#270645#0" expanded="false" />
-                <element signature="e#270675#270676#0" expanded="false" />
-                <element signature="e#277465#277466#0" expanded="false" />
-                <element signature="e#277522#277523#0" expanded="false" />
-                <element signature="e#277796#277797#0" expanded="false" />
-                <element signature="e#277841#277842#0" expanded="false" />
-                <element signature="e#278494#278495#0" expanded="false" />
-                <element signature="e#278538#278539#0" expanded="false" />
-                <element signature="e#278605#278606#0" expanded="false" />
-                <element signature="e#278666#278667#0" expanded="false" />
-                <element signature="e#279380#279381#0" expanded="false" />
-                <element signature="e#279430#279431#0" expanded="false" />
-                <element signature="e#279842#279843#0" expanded="false" />
-                <element signature="e#279903#279904#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FragmentTransaction.java" pinned="false" current-in-tab="false">
-        <entry file="file://D:/AndroidStudio/SDK/sources/android-23/android/app/FragmentTransaction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HomePageFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/HomePageFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MarketFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MarketFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.6055045">
-              <caret line="219" column="27" selection-start-line="219" selection-start-column="27" selection-end-line="219" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="214" column="42" selection-start-line="214" selection-start-column="42" selection-end-line="214" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#6018#6272#0" expanded="true" />
+                <element signature="e#6271#6272#0" expanded="true" />
+                <element signature="e#9730#10470#0" expanded="true" />
+                <element signature="e#10469#10470#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InformationFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/InformationFragment.java">
+      <file leaf-file-name="shape_button_login.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/shape_button_login.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TabFragmentAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/adapter/TabFragmentAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MineFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MineFragment.java">
+      <file leaf-file-name="MarketAdapter1.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/adapter/MarketAdapter1.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1001#1002#0" expanded="true" />
-                <element signature="e#1039#1040#0" expanded="true" />
-              </folding>
+              <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <file leaf-file-name="market_head.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/market_head.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+            <state vertical-scroll-proportion="-4.745763">
+              <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_information.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_information.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.474576">
+              <caret line="31" column="54" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="shape_btn_search.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/shape_btn_search.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.7586207">
+              <caret line="4" column="47" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InformationFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/InformationFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3027523">
+              <caret line="115" column="5" selection-start-line="115" selection-start-column="5" selection-end-line="115" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -366,9 +219,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="resourceFile" />
         <option value="layoutResourceFile_vertical" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -3040,7 +2893,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/activity/NewsContent.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/model/CarNews.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/model/NewsContent.java" />
         <option value="$PROJECT_DIR$/libzxing/src/main/java/com/xys/libzxing/zxing/activity/CaptureActivity.java" />
@@ -3070,17 +2922,12 @@
         <option value="D:/AndroidStudio/SDK/platforms/android-23/data/res/values/themes.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/main_title.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_homepage.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_information.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/viewpager_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_news.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/model/MarketItem1.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/adapter/MarketAdapter1.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_market1.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/base/ProgressWebView.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/InformationCommend.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/information_commend.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_market.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/market_head.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
@@ -3088,9 +2935,15 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/HomePageFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MineFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/InformationFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_market.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/information_commend.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/adapter/MarketAdapter1.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/shape_btn_search.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/market_head.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_information.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/InformationFragment.java" />
       </list>
     </option>
   </component>
@@ -3125,8 +2978,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -3134,15 +2988,37 @@
               <option name="myItemId" value="EasyWashCar" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle Scripts" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
+              <option name="myItemId" value="EasyWashCar" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="EasyWashCar" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -3209,54 +3085,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EasyWashCar" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="easywashcar" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="adapter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EasyWashCar" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="easywashcar" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3572,8 +3403,8 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.50610685" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.49389312" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0648855" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.49389312" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13740458" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.75087106" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -3614,84 +3445,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/activity/ErWeiMaActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="72" selection-start-line="32" selection-start-column="72" selection-end-line="32" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/model/NewsContent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18348624">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/activity/NewsContentActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="73" column="43" selection-start-line="73" selection-start-column="43" selection-end-line="73" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/AndroidStudio/SDK/extras/android/m2repository/com/android/support/support-v4/23.3.0/support-v4-23.3.0-sources.jar!/android/support/v4/view/ViewCompatICS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.052173913">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/activity/SplashActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/shape_button_buy.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24340771">
-          <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/acyivity_splash.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.762712">
-          <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/libs/baidumapapi_search_v4_0_0.jar!/com/baidu/mapapi/search/poi/PoiSearch.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3500967">
-          <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_market.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.050847">
-          <caret line="113" column="40" selection-start-line="113" selection-start-column="40" selection-end-line="113" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/adapter/MarketAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_layout.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3788,13 +3541,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/adapter/MarketAdapter1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="102" column="80" selection-start-line="102" selection-start-column="80" selection-end-line="102" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/model/MarketItem1.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3835,11 +3581,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="58" column="33" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#9496#9497#0" expanded="false" />
-            <element signature="e#9576#9577#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3858,39 +3599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_market.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.0164609">
-          <caret line="15" column="65" selection-start-line="15" selection-start-column="65" selection-end-line="15" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/information_commend.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13580246">
-          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/market_head.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.5254235">
-          <caret line="56" column="35" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_market1.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3902,32 +3610,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_news.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="45" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="105" column="37" selection-start-line="105" selection-start-column="37" selection-end-line="105" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_information.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -3955,7 +3641,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="431" column="0" selection-start-line="431" selection-start-column="0" selection-end-line="431" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3963,9 +3648,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3981,7 +3663,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3992,7 +3673,6 @@
           <folding>
             <element signature="e#0#280082#0" expanded="false" />
             <element signature="imports" expanded="false" />
-            <element signature="e#37036#37051#0" expanded="false" />
             <element signature="e#38135#38136#0" expanded="false" />
             <element signature="e#38165#38166#0" expanded="false" />
             <element signature="e#38552#38553#0" expanded="false" />
@@ -4029,6 +3709,8 @@
             <element signature="e#82577#82578#0" expanded="false" />
             <element signature="e#84275#84276#0" expanded="false" />
             <element signature="e#84302#84303#0" expanded="false" />
+            <element signature="e#85757#85758#0" expanded="false" />
+            <element signature="e#85811#85812#0" expanded="false" />
             <element signature="e#92856#92857#0" expanded="false" />
             <element signature="e#92907#92908#0" expanded="false" />
             <element signature="e#99266#99267#0" expanded="false" />
@@ -4131,7 +3813,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2049#2050#0" expanded="false" />
+            <element signature="e#2078#2079#0" expanded="false" />
+            <element signature="e#2227#2228#0" expanded="false" />
+            <element signature="e#2273#2274#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4140,7 +3828,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -4149,11 +3837,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1001#1002#0" expanded="true" />
-            <element signature="e#1039#1040#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4161,7 +3845,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4176,33 +3859,191 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/InformationFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="182" column="55" selection-start-line="182" selection-start-column="55" selection-end-line="182" selection-end-column="55" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2802#2803#0" expanded="false" />
+            <element signature="e#2848#2849#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/adapter/MarketAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1357#1358#0" expanded="false" />
+            <element signature="e#1405#1406#0" expanded="false" />
+            <element signature="e#1462#1463#0" expanded="false" />
+            <element signature="e#1493#1494#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_news.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.966103">
+          <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/news_content.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_market.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.1864405">
+          <caret line="55" column="12" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_market.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.33898306">
+          <caret line="113" column="40" selection-start-line="113" selection-start-column="40" selection-end-line="113" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/information_commend.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.355932">
+          <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/adapter/MarketAdapter1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/shape_point_unselected.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/shape_button_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/shape_edit.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/shape_point_selected.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/shape_button_buy.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.137931">
+          <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/shape_button_login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/MarketFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.6055045">
-          <caret line="219" column="27" selection-start-line="219" selection-start-column="27" selection-end-line="219" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="214" column="42" selection-start-line="214" selection-start-column="42" selection-end-line="214" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#6018#6272#0" expanded="true" />
+            <element signature="e#6271#6272#0" expanded="true" />
+            <element signature="e#9730#10470#0" expanded="true" />
+            <element signature="e#10469#10470#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/shape_btn_search.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.7586207">
+          <caret line="4" column="47" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/market_head.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.745763">
+          <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_information.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.474576">
+          <caret line="31" column="54" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xyh/easywashcar/fragment/InformationFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3027523">
+          <caret line="115" column="5" selection-start-line="115" selection-start-column="5" selection-end-line="115" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>

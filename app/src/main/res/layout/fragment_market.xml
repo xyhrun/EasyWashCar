@@ -53,6 +53,7 @@
             android:id="@+id/market_listView_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:divider="@null"
             android:visibility="visible"></ListView>
 
     </android.support.v4.widget.SwipeRefreshLayout>

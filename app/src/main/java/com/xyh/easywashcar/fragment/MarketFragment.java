@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -44,7 +45,6 @@ import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
 import com.baidu.mapapi.utils.DistanceUtil;
-import com.orhanobut.logger.Logger;
 import com.xyh.easywashcar.R;
 import com.xyh.easywashcar.activity.NewsContentActivity;
 import com.xyh.easywashcar.adapter.MarketAdapter1;
@@ -73,8 +73,8 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
     RelativeLayout tip1;
     @Bind(R.id.location_bdMapView_id)
     MapView mMapView;
-//    @Bind(R.id.market_btn_searchSome_id)
-//    Button btn_search;
+    @Bind(R.id.market_btn_searchSome_id)
+    Button btn_search;
     @Bind(R.id.market_togBtn_changMode_id)
     ToggleButton togBtn_changMode;
     @Bind(R.id.market_distance_id)
@@ -83,7 +83,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     private TextView dialog_detailInfo;
-    private MarketAdapter1 marketAdapter1;
+    private MarketAdapter1 marketAdapter1 = null;
     private int selectDistance;
     private int preSelectDistance = 6;
 
@@ -161,20 +161,16 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
         mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(MyLocationConfiguration.LocationMode.COMPASS
                 , true, null));
         mLocationClient.start();
-        mSwipeRefreshLayout.setRefreshing(true);
-        //延迟一秒,否则出现定位还没成功,则开始搜索.造成 java.lang.IllegalArgumentException: option or location or keyworld can not be null
+
+        //延迟1.5秒,否则出现定位还没成功,则开始搜索.造成 java.lang.IllegalArgumentException: option or location or keyworld can not be null
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 setRefreshData();
-                //如果没有显示数据
-                if (marketAdapter1 == null) {
-                    marketAdapter1 = new MarketAdapter1(marketItem1List, context, uidList, mPoiSearch);
-                    market_listView.setAdapter(marketAdapter1);
+                    Log.i(TAG, "run: 应用启动获得门店的个数"+marketItem1List.size());
+                    Log.i(TAG, "run: 数据加载了吗");
                 }
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
-        }, 1000);
+        }, 1500);
     }
 
     //重新返回该碎片时候数据不变,下拉刷新添加的不会出现
@@ -184,6 +180,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
     }
 
     private void setClick() {
+        btn_search.setOnClickListener(this);
         togBtn_changMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -216,10 +213,9 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
                 myPoiOverlay.zoomToSpan();
                 List<PoiInfo> poiInfoList = poiResult.getAllPoi();
                 if (poiInfoList == null) {
-//                    MyAppcation.myToast("此范围没有洗车店或者信息已获取完");
                     return;
                 }
-                Log.i(TAG, "onGetPoiResult: " + poiInfoList);
+                Log.i(TAG, "onGetPoiResult: 搜索出来门店的数量" + poiInfoList.size());
                 for (int i = 0; i < poiInfoList.size(); i++) {
                     MarketItem1 marketItem1 = new MarketItem1();
 //                    Log.i(TAG, "onGetPoiResult: poiInfoList.size = " + poiInfoList.size());
@@ -232,7 +228,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
                             + "电话号码" + mPoiInfo.phoneNum + " 描述:" + mPoiInfo.describeContents());
 //                        PoiDetailResult mPoiDetailResult = new PoiDetailResult(SearchResult.ERRORNO.NO_ERROR);
                     LatLng desLatlng = mPoiInfo.location;
-                    Log.i(TAG, "onGetPoiResult: 我的坐标" + mCurrentLatLng + "  ,目标坐标 " + desLatlng);
+//                    Log.i(TAG, "onGetPoiResult: 我的坐标" + mCurrentLatLng + "  ,目标坐标 " + desLatlng);
                     double distance = DistanceUtil.getDistance(mCurrentLatLng, desLatlng);
                     double realDistance = Math.round(distance / 10) / 100.0;
                     marketItem1.setName(mPoiInfo.name);
@@ -241,8 +237,8 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
                     marketItem1.setUid(mPoiInfo.uid);
                     marketItem1List.add(marketItem1);
                     uidList.add(mPoiInfo.uid);
-                    Log.i(TAG, "onGetPoiResult: 百度类求距离 = " + DistanceUtil.getDistance(mCurrentLatLng, desLatlng));
                 }
+                Log.i(TAG, "onGetPoiResult: 添加到集合门店的数量 ="+marketItem1List.size());
 
                 //listview按照距离升序排列
                 Collections.sort(marketItem1List, new Comparator<MarketItem1>() {
@@ -261,6 +257,13 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
                         return (rScore.compareTo(lScore));
                     }
                 });
+                if (marketAdapter1 == null) {
+                    marketAdapter1 = new MarketAdapter1(marketItem1List, context, uidList, mPoiSearch);
+                    market_listView.setAdapter(marketAdapter1);
+                } else {
+                    marketAdapter1.notifyDataSetChanged();
+                }
+
             }
 
             @Override
@@ -328,10 +331,6 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
                             .radius(selectDistance * 1000 + 100).keyword("洗车").pageCapacity(10).pageNum(pageNum++);  //半径单位m
                     mPoiSearch.searchNearby(mPoiNearbySearchOption);
                     mLocationClient.stop();
-                    if (marketAdapter1 == null) {
-                        marketAdapter1 = new MarketAdapter1(marketItem1List, context, uidList, mPoiSearch);
-                    }
-                    market_listView.setAdapter(marketAdapter1);
                 }
 
                 Log.i(TAG, "---onItemSelected: currentCity = " + currentCity);
@@ -356,6 +355,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
     }
 
     private void setRefreshData() {
+        Log.i(TAG, "setRefreshData: 坐标"+mCurrentLatLng);
         PoiNearbySearchOption mPoiNearbySearchOption = new PoiNearbySearchOption().location(mCurrentLatLng)
                 .radius(selectDistance * 1000 + 100).keyword("洗车").pageCapacity(10).pageNum(pageNum++);  //半径单位m
         mPoiSearch.searchNearby(mPoiNearbySearchOption);
@@ -368,17 +368,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-//                之前门店的数量
-                itemSize = marketItem1List.size();
                 setRefreshData();
-                //如果没有显示数据
-                if (marketAdapter1 == null) {
-                    marketAdapter1 = new MarketAdapter1(marketItem1List, context, uidList, mPoiSearch);
-                    market_listView.setAdapter(marketAdapter1);
-                } else {
-                    Logger.d("------else onDataChange");
-                    marketAdapter1.onDateChange(marketItem1List);
-                }
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         }, 1000);
@@ -464,26 +454,19 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
     public void onClick(View v) {
         switch (v.getId()) {
             //每页默认显示10条数据, PgaeNum分页编号
-//            case R.id.market_btn_searchSome_id:
-//                if (mCurrentLatLng != null) {
-//                    //门店的个数
-//                    itemSize = marketItem1List.size();
-//                    //默认3km搜索. 由于四舍五入导致19.5~19.9这种数据无法加载到范围为20km里面.故此在原搜索范围上+0.1km
-//                    PoiNearbySearchOption mPoiNearbySearchOption = new PoiNearbySearchOption().location(mCurrentLatLng)
-//                            .radius(selectDistance * 1000 + 100).keyword("洗车").pageCapacity(10).pageNum(pageNum++);  //半径单位m
-//                    mPoiSearch.searchNearby(mPoiNearbySearchOption);
-//                    mLocationClient.stop();
-//                    market_listView.setAdapter(marketAdapter1);
-//
-//                    //如果增加了数据则显示添加多少, 否则显示数据无变化
-//                    int diffSize = marketItem1List.size() -  itemSize;
-//                    if (diffSize > 0) {
-//                        MyAppcation.myToast("新发现了" + diffSize + "个门店");
-//                    } else {
-//                        MyAppcation.myToast("没有发现新的门店");
-//                    }
-//                }
-//                break;
+            case R.id.market_btn_searchSome_id:
+                if (mCurrentLatLng != null) {
+                    //门店的个数
+                    itemSize = marketItem1List.size();
+                    Log.i(TAG, "onClick: itemsize = "+itemSize);
+                    //默认6km搜索. 由于四舍五入导致19.5~19.9这种数据无法加载到范围为20km里面.故此在原搜索范围上+0.1km
+                    PoiNearbySearchOption mPoiNearbySearchOption = new PoiNearbySearchOption().location(mCurrentLatLng)
+                            .radius(selectDistance * 1000 + 100).keyword("洗车").pageCapacity(10).pageNum(pageNum++);  //半径单位m
+                    mPoiSearch.searchNearby(mPoiNearbySearchOption);
+                    Log.i(TAG, "onClick: 搜索之后的门店数量 = "+marketItem1List.size());
+                    mLocationClient.stop();
+                }
+                break;
         }
 
     }

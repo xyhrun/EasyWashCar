@@ -58,6 +58,7 @@ public class InformationFragment extends Fragment {
 //        informationCommend = new InformationCommend(context);
 //        fragmentTransaction.add(R.id.information_content_id, informationCommend);
         initData();
+        //初始化显示第一个
         setTabSelection(0);
         return view;
     }

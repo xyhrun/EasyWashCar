@@ -33,11 +33,6 @@ public class MarketAdapter1 extends BaseAdapter {
     private PoiSearch mPoiSearch;
     private List<String> uidList;
     private Context mContext;
-    public void onDateChange(ArrayList<MarketItem1> marketItems) {
-        this.marketItems = marketItems;
-        this.notifyDataSetChanged();
-    }
-
 
     public MarketAdapter1(ArrayList<MarketItem1> marketItems, Context context, ArrayList<String> uidList, PoiSearch mPoiSearch) {
         this.marketItems = marketItems;
