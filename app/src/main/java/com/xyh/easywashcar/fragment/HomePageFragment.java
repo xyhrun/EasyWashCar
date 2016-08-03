@@ -249,7 +249,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         protected Void doInBackground(Void... params) {
                 while (isPlaying) {
                     //两秒切换一次图片
-                    SystemClock.sleep(2000);
+                    SystemClock.sleep(3000);
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

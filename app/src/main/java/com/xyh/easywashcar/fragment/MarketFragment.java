@@ -167,10 +167,10 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
             @Override
             public void run() {
                 setRefreshData();
-                    Log.i(TAG, "run: 应用启动获得门店的个数"+marketItem1List.size());
-                    Log.i(TAG, "run: 数据加载了吗");
-                }
-        }, 1500);
+                Log.i(TAG, "run: 应用启动获得门店的个数" + marketItem1List.size());
+                Log.i(TAG, "run: 数据加载了吗");
+            }
+        }, 2000);
     }
 
     //重新返回该碎片时候数据不变,下拉刷新添加的不会出现
@@ -224,8 +224,8 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
                     if (uidList.contains(mPoiInfo.uid)) {
                         continue;
                     }
-                    Log.i(TAG, "onGetPoiResult: 名称 = " + mPoiInfo.name + "地址: " + mPoiInfo.address
-                            + "电话号码" + mPoiInfo.phoneNum + " 描述:" + mPoiInfo.describeContents());
+//                    Log.i(TAG, "onGetPoiResult: 名称 = " + mPoiInfo.name + "地址: " + mPoiInfo.address
+//                            + "电话号码" + mPoiInfo.phoneNum + " 描述:" + mPoiInfo.describeContents());
 //                        PoiDetailResult mPoiDetailResult = new PoiDetailResult(SearchResult.ERRORNO.NO_ERROR);
                     LatLng desLatlng = mPoiInfo.location;
 //                    Log.i(TAG, "onGetPoiResult: 我的坐标" + mCurrentLatLng + "  ,目标坐标 " + desLatlng);
@@ -238,7 +238,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
                     marketItem1List.add(marketItem1);
                     uidList.add(mPoiInfo.uid);
                 }
-                Log.i(TAG, "onGetPoiResult: 添加到集合门店的数量 ="+marketItem1List.size());
+                Log.i(TAG, "onGetPoiResult: 添加到集合门店的数量 =" + marketItem1List.size());
 
                 //listview按照距离升序排列
                 Collections.sort(marketItem1List, new Comparator<MarketItem1>() {
@@ -355,7 +355,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
     }
 
     private void setRefreshData() {
-        Log.i(TAG, "setRefreshData: 坐标"+mCurrentLatLng);
+        Log.i(TAG, "setRefreshData: 坐标" + mCurrentLatLng);
         PoiNearbySearchOption mPoiNearbySearchOption = new PoiNearbySearchOption().location(mCurrentLatLng)
                 .radius(selectDistance * 1000 + 100).keyword("洗车").pageCapacity(10).pageNum(pageNum++);  //半径单位m
         mPoiSearch.searchNearby(mPoiNearbySearchOption);
@@ -458,12 +458,12 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
                 if (mCurrentLatLng != null) {
                     //门店的个数
                     itemSize = marketItem1List.size();
-                    Log.i(TAG, "onClick: itemsize = "+itemSize);
+                    Log.i(TAG, "onClick: itemsize = " + itemSize);
                     //默认6km搜索. 由于四舍五入导致19.5~19.9这种数据无法加载到范围为20km里面.故此在原搜索范围上+0.1km
                     PoiNearbySearchOption mPoiNearbySearchOption = new PoiNearbySearchOption().location(mCurrentLatLng)
                             .radius(selectDistance * 1000 + 100).keyword("洗车").pageCapacity(10).pageNum(pageNum++);  //半径单位m
                     mPoiSearch.searchNearby(mPoiNearbySearchOption);
-                    Log.i(TAG, "onClick: 搜索之后的门店数量 = "+marketItem1List.size());
+                    Log.i(TAG, "onClick: 搜索之后的门店数量 = " + marketItem1List.size());
                     mLocationClient.stop();
                 }
                 break;

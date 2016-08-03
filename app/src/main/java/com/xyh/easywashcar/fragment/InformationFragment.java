@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.xyh.easywashcar.R;
-import com.xyh.easywashcar.adapter.TabFragmentAdapter;
+import com.xyh.easywashcar.adapter.InformationPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +29,6 @@ public class InformationFragment extends Fragment {
     private Context context;
     private LayoutInflater inflater;
     private ArrayList<String> titleList;
-    private TabFragmentAdapter tabFragmentAdapter;
-
     public InformationFragment(Context context) {
         this.context = context;
     }
@@ -39,10 +37,11 @@ public class InformationFragment extends Fragment {
     private InformationCommend informationCommend;
     private CarCyclopaedia carCyclopaedia;
     private NecessarySupply necessarySupply;
-
+    private InformationPagerAdapter mInformationPagerAdapter;
     @Bind(R.id.information_tabLayout_id)
     TabLayout mTabLayout;
-
+    @Bind(R.id.information_viewPager_id)
+    ViewPager mViewPager;
     @Bind(R.id.information_content_id)
     FrameLayout mContent;
 
@@ -53,13 +52,9 @@ public class InformationFragment extends Fragment {
         Log.i(TAG, "------InformationFragment onCreateView: ");
         View view = inflater.inflate(R.layout.fragment_information, container, false);
         ButterKnife.bind(this, view);
-//        FragmentManager fragmentManager = getFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        informationCommend = new InformationCommend(context);
-//        fragmentTransaction.add(R.id.information_content_id, informationCommend);
         initData();
-        //初始化显示第一个
-        setTabSelection(0);
+        //设置一开始加载几个碎片, 默认是一个. 未来保证数据不丢失,设置为(碎片个数 - 1)
+        mViewPager.setOffscreenPageLimit(2);
         return view;
     }
 
@@ -77,86 +72,19 @@ public class InformationFragment extends Fragment {
         titleList.add("汽车百科");
         titleList.add("汽车用品");
 
-        //添加碎片
-//        fragmentList = new ArrayList<>();
-//        informationCommend = new InformationCommend(context);
-//        carCyclopaedia = new CarCyclopaedia(context);
-//        necessarySupply = new NecessarySupply(context);
-//        fragmentList.add(informationCommend);
-//        fragmentList.add(carCyclopaedia);
-//        fragmentList.add(necessarySupply);
+//        添加碎片
+        fragmentList = new ArrayList<>();
+        informationCommend = new InformationCommend(context);
+        carCyclopaedia = new CarCyclopaedia(context);
+        necessarySupply = new NecessarySupply(context);
+        fragmentList.add(informationCommend);
+        fragmentList.add(carCyclopaedia);
+        fragmentList.add(necessarySupply);
 
-        //设置tab模式，当前为系统默认模式
-        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
-        //绑定tab标题数据
-        mTabLayout.addTab(mTabLayout.newTab().setText(titleList.get(0)));
-        mTabLayout.addTab(mTabLayout.newTab().setText(titleList.get(1)));
-        mTabLayout.addTab(mTabLayout.newTab().setText(titleList.get(2)));
-        //实例化适配器
-        tabFragmentAdapter = new TabFragmentAdapter(getFragmentManager(), context, mTabLayout.getTabCount(), titleList, fragmentList);
-
-        //TabLayout绑定标题栏点击适配器
-        mTabLayout.setTabsFromPagerAdapter(tabFragmentAdapter);
-        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                setTabSelection(mTabLayout.getSelectedTabPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-    }
-
-    private void setTabSelection(int selectedTabPosition) {
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        hideFragments(fragmentTransaction);
-        switch (selectedTabPosition) {
-            case 0:
-                if (informationCommend == null) {
-                    informationCommend = new InformationCommend(context);
-                    fragmentTransaction.add(R.id.information_content_id, informationCommend);
-                } else {
-                    fragmentTransaction.show(informationCommend);
-                }
-                break;
-            case 1:
-                if (carCyclopaedia == null) {
-                    carCyclopaedia = new CarCyclopaedia(context);
-                    fragmentTransaction.add(R.id.information_content_id, carCyclopaedia);
-                } else {
-                    fragmentTransaction.show(carCyclopaedia);
-                }
-                break;
-            case 2:
-                if (necessarySupply == null) {
-                    necessarySupply = new NecessarySupply(context);
-                    fragmentTransaction.add(R.id.information_content_id, necessarySupply);
-                } else {
-                    fragmentTransaction.show(necessarySupply);
-                }
-                break;
-        }
-        fragmentTransaction.commit();
-    }
-
-    private void hideFragments(FragmentTransaction transaction) {
-        if (informationCommend != null) {
-            transaction.hide(informationCommend);
-        }
-        if (carCyclopaedia != null) {
-            transaction.hide(carCyclopaedia);
-        }
-        if (necessarySupply != null) {
-            transaction.hide(necessarySupply);
-        }
+        mInformationPagerAdapter = new InformationPagerAdapter(getFragmentManager(), titleList, fragmentList);
+        mViewPager.setAdapter(mInformationPagerAdapter);
+        //TabLayout与ViewPager关联
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     @Override
