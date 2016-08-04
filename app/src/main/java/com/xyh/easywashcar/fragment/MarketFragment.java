@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -66,7 +67,7 @@ import butterknife.ButterKnife;
 /**
  * Created by 向阳湖 on 2016/5/20.
  */
-public class MarketFragment extends android.support.v4.app.Fragment implements RefreshListView.IRefreshListener, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class MarketFragment extends android.support.v4.app.Fragment implements RefreshListView.IRefreshListener, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener, AbsListView.OnScrollListener {
     @Bind(R.id.market_listView_id)
     ListView market_listView;
     @Bind(R.id.no_netWork_tip_id1)
@@ -93,7 +94,8 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
     //门店的数量
     private int itemSize;
     private Context context;
-
+    private int lastVisibleItem;
+    private boolean scrollBootom = false;
     //百度地图
     private BaiduMap mBaiduMap;
     private static PoiSearch mPoiSearch;
@@ -123,6 +125,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
         SDKInitializer.initialize(MyAppcation.getContext());
         View view = inflater.inflate(R.layout.fragment_market, container, false);
         ButterKnife.bind(this, view);
+        market_listView.setOnScrollListener(this);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.color_green_blue);
         mBaiduMap = mMapView.getMap();
@@ -469,6 +472,23 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
                 break;
         }
 
+    }
+
+    //上拉加载数据
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        if (scrollState == SCROLL_STATE_IDLE && scrollBootom) {
+            Log.i(TAG, "onScrollStateChanged: 上拉加载");
+            setRefreshData();
+        }
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        lastVisibleItem = firstVisibleItem + visibleItemCount;
+        if (lastVisibleItem + 1 == totalItemCount) {
+            scrollBootom = true;
+        }
     }
 
     private class MyLocationListener implements BDLocationListener {
