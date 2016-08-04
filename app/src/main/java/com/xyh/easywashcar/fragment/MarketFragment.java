@@ -94,8 +94,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
     //门店的数量
     private int itemSize;
     private Context context;
-    private int lastVisibleItem;
-    private boolean scrollBootom = false;
+
     //百度地图
     private BaiduMap mBaiduMap;
     private static PoiSearch mPoiSearch;
@@ -477,7 +476,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
     //上拉加载数据
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-        if (scrollState == SCROLL_STATE_IDLE && scrollBootom) {
+        if (scrollState == SCROLL_STATE_IDLE && view.getLastVisiblePosition() == (view.getCount() - 1)) {
             Log.i(TAG, "onScrollStateChanged: 上拉加载");
             setRefreshData();
         }
@@ -485,10 +484,6 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
 
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-        lastVisibleItem = firstVisibleItem + visibleItemCount;
-        if (lastVisibleItem + 1 == totalItemCount) {
-            scrollBootom = true;
-        }
     }
 
     private class MyLocationListener implements BDLocationListener {
