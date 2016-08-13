@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--注意布局, 父布局一定要为Relative-->
+<com.victor.loading.rotate.RotateLoading xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rotateLoading_id"
+    android:layout_width="64dp"
+    android:layout_height="64dp"
+    android:layout_centerInParent="true"
+    app:loading_color="@color/color_green_blue"
+    app:loading_width="5dp" />

@@ -46,6 +46,7 @@ import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
 import com.baidu.mapapi.utils.DistanceUtil;
+import com.victor.loading.rotate.RotateLoading;
 import com.xyh.easywashcar.R;
 import com.xyh.easywashcar.activity.NewsContentActivity;
 import com.xyh.easywashcar.adapter.MarketAdapter1;
@@ -82,10 +83,12 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
     Spinner market_distance;
     @Bind(R.id.market_swipeRefreshLayout_id)
     SwipeRefreshLayout mSwipeRefreshLayout;
+    @Bind(R.id.rotateLoading_id)
+    RotateLoading rotateLoading;
 
     private TextView dialog_detailInfo;
     private MarketAdapter1 marketAdapter1 = null;
-    private int selectDistance;
+    private int selectDistance = 20;
     private int preSelectDistance = 6;
 
     //  private boolean isRefresh = false;
@@ -124,6 +127,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
         SDKInitializer.initialize(MyAppcation.getContext());
         View view = inflater.inflate(R.layout.fragment_market, container, false);
         ButterKnife.bind(this, view);
+        rotateLoading.start();
         market_listView.setOnScrollListener(this);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.color_green_blue);
@@ -135,6 +139,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
             tip1.setVisibility(View.GONE);
             market_listView.setVisibility(View.VISIBLE);
         } else {
+            rotateLoading.stop();
             tip1.setVisibility(View.VISIBLE);
             market_listView.setVisibility(View.GONE);
         }
@@ -164,7 +169,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
                 , true, null));
         mLocationClient.start();
 
-        //延迟1.5秒,否则出现定位还没成功,则开始搜索.造成 java.lang.IllegalArgumentException: option or location or keyworld can not be null
+        //延迟2秒,否则出现定位还没成功,则开始搜索.造成 java.lang.IllegalArgumentException: option or location or keyworld can not be null
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -201,10 +206,18 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
         mPoiSearch.setOnGetPoiSearchResultListener(new OnGetPoiSearchResultListener() {
             @Override
             public void onGetPoiResult(PoiResult poiResult) {
+                boolean zoomSmaller = false;
                 PoiOverlay myPoiOverlay = new MyPoiOverlay(mBaiduMap);
 //                若是范围小于之前的 就清除原数据,
+                Log.i(TAG, "onGetPoiResult: select = " + selectDistance);
+                Log.i(TAG, "onGetPoiResult: preSelect = "+preSelectDistance);
                 if (selectDistance < preSelectDistance) {
                     marketItem1List.clear();
+                    uidList.clear();
+                    zoomSmaller = true;
+                    marketAdapter1 = new MarketAdapter1(marketItem1List, context, uidList, mPoiSearch);
+                    market_listView.setAdapter(marketAdapter1);
+                    rotateLoading.start();
                 }
                 preSelectDistance = selectDistance;
                 //设置poi点击事件
@@ -214,15 +227,16 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
                 myPoiOverlay.addToMap();
                 myPoiOverlay.zoomToSpan();
                 List<PoiInfo> poiInfoList = poiResult.getAllPoi();
+
                 if (poiInfoList == null) {
+                    MyAppcation.myToast("没有搜到其他门店");
                     return;
                 }
-                Log.i(TAG, "onGetPoiResult: 搜索出来门店的数量" + poiInfoList.size());
                 for (int i = 0; i < poiInfoList.size(); i++) {
                     MarketItem1 marketItem1 = new MarketItem1();
-//                    Log.i(TAG, "onGetPoiResult: poiInfoList.size = " + poiInfoList.size());
                     PoiInfo mPoiInfo = poiInfoList.get(i);
                     //避免重复项
+                    Log.i(TAG, "onGetPoiResult: 是否包含重复项目 = "+uidList.contains(mPoiInfo.uid));
                     if (uidList.contains(mPoiInfo.uid)) {
                         continue;
                     }
@@ -259,11 +273,22 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
                         return (rScore.compareTo(lScore));
                     }
                 });
-                if (marketAdapter1 == null) {
+
+
+                if (marketAdapter1 == null || zoomSmaller) {
+                    Log.i(TAG, "onGetPoiResult: 范围小时门店数: " + marketItem1List.size());
+                    if (marketItem1List.size() == 0) {
+                        rotateLoading.stop();
+                        MyAppcation.myToast("搜索范围内没有门店");
+                        return;
+                    }
+
                     marketAdapter1 = new MarketAdapter1(marketItem1List, context, uidList, mPoiSearch);
                     market_listView.setAdapter(marketAdapter1);
-                } else {
+                    rotateLoading.stop();
+                }else {
                     marketAdapter1.notifyDataSetChanged();
+                    rotateLoading.stop();
                 }
 
             }
@@ -309,7 +334,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
                 Matcher m = p.matcher(distance);
                 String DistanceStr = m.replaceAll("").trim();
                 //默认5km搜索
-                int finalDistance = 5;
+                int finalDistance = 20;
                 if (DistanceStr != "") {
                     finalDistance = Integer.valueOf(DistanceStr);
                 }
@@ -329,10 +354,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
 //                }
 
                 if (mCurrentLatLng != null && DistanceStr != "") {
-                    PoiNearbySearchOption mPoiNearbySearchOption = new PoiNearbySearchOption().location(mCurrentLatLng)
-                            .radius(selectDistance * 1000 + 100).keyword("洗车").pageCapacity(10).pageNum(pageNum++);  //半径单位m
-                    mPoiSearch.searchNearby(mPoiNearbySearchOption);
-                    mLocationClient.stop();
+                    searchNear();
                 }
 
                 Log.i(TAG, "---onItemSelected: currentCity = " + currentCity);
@@ -458,15 +480,7 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
             //每页默认显示10条数据, PgaeNum分页编号
             case R.id.market_btn_searchSome_id:
                 if (mCurrentLatLng != null) {
-                    //门店的个数
-                    itemSize = marketItem1List.size();
-                    Log.i(TAG, "onClick: itemsize = " + itemSize);
-                    //默认6km搜索. 由于四舍五入导致19.5~19.9这种数据无法加载到范围为20km里面.故此在原搜索范围上+0.1km
-                    PoiNearbySearchOption mPoiNearbySearchOption = new PoiNearbySearchOption().location(mCurrentLatLng)
-                            .radius(selectDistance * 1000 + 100).keyword("洗车").pageCapacity(10).pageNum(pageNum++);  //半径单位m
-                    mPoiSearch.searchNearby(mPoiNearbySearchOption);
-                    Log.i(TAG, "onClick: 搜索之后的门店数量 = " + marketItem1List.size());
-                    mLocationClient.stop();
+                    searchNear();
                 }
                 break;
         }
@@ -538,5 +552,12 @@ public class MarketFragment extends android.support.v4.app.Fragment implements R
 
     public static void showDetailInfo(String uid) {
         mPoiSearch.searchPoiDetail(new PoiDetailSearchOption().poiUid(uid));
+    }
+
+    private void searchNear() {
+        PoiNearbySearchOption mPoiNearbySearchOption = new PoiNearbySearchOption().location(mCurrentLatLng)
+                .radius(selectDistance * 1000 + 100).keyword("洗车").pageCapacity(10).pageNum(pageNum);  //半径单位m
+        mPoiSearch.searchNearby(mPoiNearbySearchOption);
+        mLocationClient.stop();
     }
 }

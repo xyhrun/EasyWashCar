@@ -22,6 +22,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.victor.loading.rotate.RotateLoading;
 import com.xyh.easywashcar.R;
 import com.xyh.easywashcar.activity.NewsContentActivity;
 import com.xyh.easywashcar.adapter.RecommendNewsAdapter;
@@ -56,6 +57,8 @@ public class InformationCommend extends Fragment implements AdapterView.OnItemCl
     SwipeRefreshLayout mSwipeRefreshLayout;
     @Bind(R.id.no_netWork_tip_id)
     RelativeLayout tip;
+    @Bind(R.id.rotateLoading_id)
+    RotateLoading rotateLoading;
 //    @Bind(R.id.news_content_id)
 //    TextView content;
 
@@ -82,6 +85,7 @@ public class InformationCommend extends Fragment implements AdapterView.OnItemCl
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = layoutInflater.inflate(R.layout.information_commend, container, false);
         ButterKnife.bind(this, view);
+        rotateLoading.start();
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.color_green_blue);
         return view;
@@ -96,6 +100,7 @@ public class InformationCommend extends Fragment implements AdapterView.OnItemCl
             mListView.setVisibility(View.VISIBLE);
             getDataFromVolley();
         } else {
+            rotateLoading.stop();
             tip.setVisibility(View.VISIBLE);
             mListView.setVisibility(View.GONE);
         }
@@ -206,6 +211,7 @@ public class InformationCommend extends Fragment implements AdapterView.OnItemCl
         //显示数据
         recommendNewsAdapter = new RecommendNewsAdapter(mContext, newsContentList, mListView);
         mListView.setAdapter(recommendNewsAdapter);
+        rotateLoading.stop();
     }
 
 //    public void dealDataByGson(String response) {
